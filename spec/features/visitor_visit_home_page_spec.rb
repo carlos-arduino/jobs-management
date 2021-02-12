@@ -6,7 +6,8 @@ feature 'Visitor visit home page and' do
 
         expect(page).to have_content('Bem vindo')
         expect(page).to have_link('Visualizar Vagas')
-        expect(page).to have_link('Login')
-        expect(page).to have_link('Sign up')
+        expect(page).to have_link('Corporativo')
+        expect(page).not_to have_link('Login')
+        expect(page).not_to have_link('Sign up')
     end
 end
