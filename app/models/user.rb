@@ -4,11 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  private
-
-  def corporate_domain_exists?
-    domain = Domain.extract_domain(self.email)
-    Domain.exists?(name: domain)
+  def extract_domain
+    email.gsub(/.+@([^.]+).+/, '\1').downcase
   end
-
 end
