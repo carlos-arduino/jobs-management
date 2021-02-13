@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_173751) do
+ActiveRecord::Schema.define(version: 2021_02_13_203525) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 2021_02_12_173751) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.string "income"
+    t.integer "level"
+    t.date "limit_date"
+    t.integer "quantity"
+    t.integer "status"
+    t.integer "domain_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
+    t.index ["domain_id"], name: "index_jobs_on_domain_id"
   end
 
   create_table "public_domains", force: :cascade do |t|
@@ -50,4 +64,5 @@ ActiveRecord::Schema.define(version: 2021_02_12_173751) do
   end
 
   add_foreign_key "companies", "users"
+  add_foreign_key "jobs", "domains"
 end

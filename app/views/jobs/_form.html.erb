@@ -1,0 +1,45 @@
+<%= form_with model: job do |form| %>
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+        <% job.errors.full_messages_for(:title).each do |message| %>
+        <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :income %>
+        <%= form.text_field :income %>
+        <% job.errors.full_messages_for(:income).each do |message| %>
+        <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :level %>
+        <%= form.text_field :level %>
+        <% job.errors.full_messages_for(:level).each do |message| %>
+        <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :limit_date %>
+        <%= form.text_field :limit_date %>
+        <% job.errors.full_messages_for(:limit_date).each do |message| %>
+        <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :quantity %>
+        <%= form.text_field :quantity %>
+        <% job.errors.full_messages_for(:quantity).each do |message| %>
+        <%= message %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>
