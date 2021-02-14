@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   }
   
   resources :jobs , only: [:index, :new, :create, :show] #Provavelmente no futuro esse resource sera aninhado com companies
-  resources :companies, only: [:new, :create, :show]
+  resources :companies, only: [:new, :create, :show, :index]
 end

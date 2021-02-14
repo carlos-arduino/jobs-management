@@ -16,13 +16,6 @@ feature 'corporate user can add job' do
         expect(current_path).to eq(new_job_path)
     end
 
-    scenario 'and guest can not add job' do
-        visit root_path
-        click_on 'Corporativo'
-
-        expect(current_path).to eq(new_user_session_path)
-    end
-
     scenario 'successfully' do
         
     end

@@ -1,18 +1,44 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :create_domain!, only: [:create], unless: :domain_exists?
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   
-  # The path used after sign up.
+  @new_company_redirect_seletor = false
+
+  # DELETE /resource
+  def destroy
+    domain = Domain.find_by(name: current_user.extract_domain)
+    domain.destroy
+    user = User.find(current_user.id)
+    user.destroy
+
+    redirect_to root_path
+  end
+  
+  private
+
+  #The path used after sign up.
   def after_sign_up_path_for(resource)
-    domain = resource.extract_domain
-    if Domain.exists?(name: domain)
-      super(resource)
-    else
-      Domain.create!(name: domain)
+    if @new_company_redirect_seletor
       new_company_path
+    else
+      companies_path
     end
+  end
+
+  def domain_exists?
+    Domain.exists?(name: extract_domain)  
+  end
+
+  def create_domain!
+    Domain.create!(name: extract_domain)
+    @new_company_redirect_seletor = true
+  end
+
+  def extract_domain
+    params[:user][:email].gsub(/.+@([^.]+).+/, '\1').downcase
   end
 
   # GET /resource/sign_up
@@ -35,10 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

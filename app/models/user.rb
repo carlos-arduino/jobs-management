@@ -8,3 +8,5 @@ class User < ApplicationRecord
     email.gsub(/.+@([^.]+).+/, '\1').downcase
   end
 end
+
+# TODO - Extrair para módulo de helper o método extract_domain utlizado pelas classes User e RegistrationsController.
