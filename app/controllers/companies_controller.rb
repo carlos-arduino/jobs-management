@@ -9,6 +9,7 @@ class CompaniesController < ApplicationController
 
     def create
         @company = Company.new(company_params)
+        @company.domain = current_user.extract_domain
 
         if @company.save
             redirect_to @company

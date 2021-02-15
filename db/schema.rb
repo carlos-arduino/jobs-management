@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_14_184117) do
+ActiveRecord::Schema.define(version: 2021_02_15_010611) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 2021_02_14_184117) do
     t.integer "level"
     t.date "limit_date"
     t.integer "quantity"
-    t.integer "status"
-    t.integer "domain_id", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
-    t.index ["domain_id"], name: "index_jobs_on_domain_id"
+    t.integer "company_id", null: false
+    t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
   create_table "public_domains", force: :cascade do |t|
@@ -61,5 +61,5 @@ ActiveRecord::Schema.define(version: 2021_02_14_184117) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "jobs", "domains"
+  add_foreign_key "jobs", "companies"
 end

@@ -1,5 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Company, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Company do
+  context 'validation' do
+    it { should validate_presence_of(:domain) }
+    
+    it { should validate_presence_of(:name) }
+
+    it { should validate_presence_of(:address) }
+  end
 end

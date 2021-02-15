@@ -1,3 +1,5 @@
 class Job < ApplicationRecord
-  belongs_to :domain
+  validates :title, :description, :level, :limit_date, :quantity , presence: true
+  
+  belongs_to :company
 end
