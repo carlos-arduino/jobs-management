@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_010611) do
+ActiveRecord::Schema.define(version: 2021_02_16_151519) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_010611) do
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.string "income"
-    t.integer "level"
+    t.string "level"
     t.date "limit_date"
     t.integer "quantity"
     t.integer "status", default: 0, null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_010611) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
     t.integer "company_id", null: false
+    t.string "domain"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 

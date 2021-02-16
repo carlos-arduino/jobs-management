@@ -1,0 +1,18 @@
+<hr>
+<p>
+  <strong>Título:</strong>
+  <%= job.title %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= job.description %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= job.quantity %>
+</p>
+<p><%= link_to 'Editar', edit_company_job_path(job.company, job) %></p>
+<hr>
+

@@ -1,41 +1,59 @@
-<%= form_with model: job do |form| %>
+<%= form_with model: [ @company, @company.jobs.build ] do |form| %>
     <div>
         <%= form.label :title %>
         <%= form.text_field :title %>
-        <% job.errors.full_messages_for(:title).each do |message| %>
-        <%= message %>
+        <% @company.jobs.each do |j|  %>
+            <% j.errors.full_messages_for(:title).each do |message| %>  
+                <%= message %>
+            <% end %>
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+        <% @company.jobs.each do |j|  %>
+            <% j.errors.full_messages_for(:description).each do |message| %>  
+                <%= message %>
+            <% end %>
         <% end %>
     </div>
 
     <div>
         <%= form.label :income %>
         <%= form.text_field :income %>
-        <% job.errors.full_messages_for(:income).each do |message| %>
-        <%= message %>
+        <% @company.jobs.each do |j|  %>
+            <% j.errors.full_messages_for(:income).each do |message| %>  
+                <%= message %>
+            <% end %>
         <% end %>
     </div>
 
     <div>
         <%= form.label :level %>
-        <%= form.text_field :level %>
-        <% job.errors.full_messages_for(:level).each do |message| %>
-        <%= message %>
+        <%= form.select :level, ['Júnior', 'Pleno', 'Sênior'], selected: 'Júnior' %>
+        <% @company.jobs.each do |j|  %>
+            <% j.errors.full_messages_for(:level).each do |message| %>  
+                <%= message %>
+            <% end %>
         <% end %>
     </div>
 
     <div>
         <%= form.label :limit_date %>
-        <%= form.text_field :limit_date %>
-        <% job.errors.full_messages_for(:limit_date).each do |message| %>
-        <%= message %>
+        <%= form.date_field :limit_date %>
+        <% @company.jobs.each do |j|  %>
+            <% j.errors.full_messages_for(:limit_date).each do |message| %>  
+                <%= message %>
+            <% end %>
         <% end %>
     </div>
 
     <div>
         <%= form.label :quantity %>
-        <%= form.text_field :quantity %>
-        <% job.errors.full_messages_for(:quantity).each do |message| %>
-        <%= message %>
+        <%= form.number_field :quantity %>
+        <% @company.errors.full_messages.each do |message| %>
+            <%= message %>
         <% end %>
     </div>
 
@@ -43,3 +61,4 @@
         <%= form.submit %>
     </div>
 <% end %>
+<p><%= link_to 'Cancelar', companies_path %></p>

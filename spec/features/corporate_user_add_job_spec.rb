@@ -1,31 +1,58 @@
 require 'rails_helper'
 
-feature 'corporate user view list of jobs only for your company' do
-    scenario 'from root path' do
-        user_rebase = User.create!(email: 'cae@rebase.com.br', password: '123456')
-        domain_rebase = Domain.create!(name: 'rebase')
-        rebase_company = Company.create!(name: 'Rebase', domain: 'rebase',
-                                         address: 'Rua Alameda Santos, 45')
+feature 'corporate user can add a job' do
+    scenario 'from root path successfully' do
+        Domain.create!(name: 'rebase')
+        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456')
+        Company.create!(name: 'Rebase Tecnologia', 
+                        address: 'Rua Alameda Santos, 45',
+                        domain: 'rebase')
 
-        domain_iugu = Domain.create!(name: 'iugu')
-        iugu_company = Company.create!(name: 'Iugu', domain: 'iugu', 
-                                       address: 'Avenida Paulista, 412')
-
-        job_rebase = Job.create!(title: 'Dev. Senior', description: 'Programador ruby',
-                                 level: 0, limit_date: '15/03/2021', 
-                                 quantity: 5, company: rebase_company)
-        job_iugu = Job.create!(title: 'Dev. Junior', description: 'Programador C#',
-                               level: 5, limit_date: '21/04/2021', 
-                               quantity: 15, company: iugu_company)
-                                 
         visit root_path
-        click_on 'Corporativo'
-        fill_in 'E-mail', with: 'cae@rebase.com.br'
+        click_on 'Corporativo'        
+        fill_in 'E-mail', with: 'cae@rebase.com'
         fill_in 'Senha', with: '123456'
         click_on 'Log in'
-        
-        
+
+        click_on 'Cadastrar oferta de vagas'
+
+        fill_in 'Title', with: 'Dev. Junior'
+        fill_in 'Description', with: 'Desenvolvedor ruby'
+        fill_in 'Income', with: '3000,00'
+        page.select 'Júnior', from: 'Level'
+        fill_in 'Limit date', with: '28/02/2021'
+        fill_in 'Quantity', with: '5'
+
+        click_on 'Criar Job'
+
         expect(current_path).to eq(companies_path)
+        expect(page).to have_content('Título: Dev. Junior')
+        expect(page).to have_content('Descrição: Desenvolvedor ruby')
+        expect(page).to have_content('Quantidade: 5')
+    end
+
+    scenario 'and can cancel process' do
+        Domain.create!(name: 'rebase')
+        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456')
+        Company.create!(name: 'Rebase Tecnologia', 
+                        address: 'Rua Alameda Santos, 45',
+                        domain: 'rebase')
+
+        login_as user_rebase, scope: :user
+        visit companies_path
+        click_on 'Cadastrar oferta de vagas'
+
+        fill_in 'Title', with: 'Dev. Junior'
+        fill_in 'Description', with: 'Desenvolvedor ruby'
+        fill_in 'Income', with: '3000,00'
+        page.select 'Júnior', from: 'Level'
+        fill_in 'Limit date', with: '28/02/2021'
+        fill_in 'Quantity', with: '5'
+        click_on 'Cancelar'
         
+        expect(page).not_to have_content('Título: Dev. Junior')
+        expect(page).not_to have_content('Descrição: Desenvolvedor ruby')
+        expect(page).not_to have_content('Quantidade: 5')
+        expect(Job.last).to eq(nil)
     end
 end

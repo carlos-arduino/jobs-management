@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
+    before_action :authenticate_user!
     def index
-        
+        @company = Company.find_by(domain: current_user.extract_domain)
     end
     
     def new
@@ -19,7 +20,7 @@ class CompaniesController < ApplicationController
     end
 
     def show
-        @company = Company.find(params[:id])
+        @company = Company.find_by(domain: current_user.extract_domain)
     end
 
     private

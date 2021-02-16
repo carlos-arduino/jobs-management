@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   
-  resources :jobs , only: [:index, :new, :create, :show] #Provavelmente no futuro esse resource sera aninhado com companies
-  resources :companies, only: [:new, :create, :show, :index]
+  resources :companies, only: [:new, :create, :show, :index] do
+    resources :jobs , only: [:index, :new, :create, :show, :edit, :update]  
+  end
+  
 end

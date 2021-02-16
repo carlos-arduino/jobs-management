@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'corporate user management account' do
-    scenario 'can navigate to login page' do
+    scenario 'can not allow access to visit user' do
         visit root_path
         click_on 'Corporativo'
 

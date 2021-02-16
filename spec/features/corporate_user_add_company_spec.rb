@@ -39,6 +39,7 @@ feature 'corporate user can add a company' do
 
     scenario 'and do not show add company if a email domain exists' do
         Domain.create!(name: 'rebase')
+        Company.create!(name: 'Rebase', address: 'Alameda Santos, 45', domain: 'rebase')
 
         visit root_path
         click_on 'Corporativo'

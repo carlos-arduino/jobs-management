@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
-  validates :domain, :name, :address, presence: true
-  has_many :job
+  has_many :jobs
+  validates_associated :jobs
 
+  validates :domain, :name, :address, presence: true
 end

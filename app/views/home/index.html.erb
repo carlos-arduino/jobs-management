@@ -1,7 +1,7 @@
 <h1>Sistema de Gerenciamento de vagas</h1>
 <h3>Bem vindo</h3>
 <br>
-<%= link_to 'Visualizar Vagas', jobs_path %>
+<%= link_to 'Visualizar Vagas', companies_path %>
 <% unless user_signed_in? %>
     <%= link_to 'Corporativo', new_user_session_path %>
 <% end %>
