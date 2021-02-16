@@ -3,14 +3,17 @@ class JobsController < ApplicationController
     
     def new
         @company = Company.find(params[:company_id])
+        @job = Job.new
     end
     
     def create
         @company = Company.find(params[:company_id])
-        begin
-            @company.jobs.create!(job_params)
+        @job = Job.new(job_params)
+        @job.company_id = @company.id
+
+        if @job.save
             redirect_to companies_path
-        rescue ActiveRecord::RecordInvalid => invalid
+        else
             render 'jobs/new'
         end
     end

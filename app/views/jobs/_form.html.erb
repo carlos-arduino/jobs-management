@@ -1,23 +1,18 @@
-<%= form_with model: job ? [ company, job ] : [ company, company.jobs.build ] do |form| %>
+<%= form_with model: [ company, job ] do |form| %>
     <div>
         <%= form.label :title %>
         <%= form.text_field :title %>
-        <% unless job.nil? %>
-            <% job.errors.full_messages_for(:title).each do |message| %>  
-                <%= message %>
-            <% end %>  
-        <% end %>
-        
+        <% job.errors.full_messages_for(:title).each do |message| %>  
+            <%= message %>
+        <% end %>  
     </div>
 
     <div>
         <%= form.label :description %>
         <%= form.text_field :description %>
-        <% unless job.nil? %>
-            <% job.errors.full_messages_for(:description).each do |message| %>  
-                <%= message %>
-            <% end %>  
-        <% end %>
+        <% job.errors.full_messages_for(:description).each do |message| %>  
+            <%= message %>
+        <% end %>  
     </div>
 
     <div>
@@ -27,32 +22,26 @@
 
     <div>
         <%= form.label :level %>
-        <%= form.select :level, ['Júnior', 'Pleno', 'Sênior'], selected: job ? "#{job.level}" : 'Júnior' %>
-        <% unless job.nil? %>
-            <% job.errors.full_messages_for(:level).each do |message| %>  
-                <%= message %>
-            <% end %>  
-        <% end %>
+        <%= form.select :level, ['Júnior', 'Pleno', 'Sênior'], selected: job.level %>
+        <% job.errors.full_messages_for(:level).each do |message| %>  
+            <%= message %>
+        <% end %>  
     </div>
 
     <div>
         <%= form.label :limit_date %>
         <%= form.date_field :limit_date %>
-        <% unless job.nil? %>
-            <% job.errors.full_messages_for(:limit_date).each do |message| %>  
-                <%= message %>
-            <% end %>  
-        <% end %>
+        <% job.errors.full_messages_for(:limit_date).each do |message| %>  
+            <%= message %>
+        <% end %>  
     </div>
 
     <div>
         <%= form.label :quantity %>
         <%= form.number_field :quantity %>
-        <% unless job.nil? %>
-            <% job.errors.full_messages_for(:quantity).each do |message| %>  
-                <%= message %>
-            <% end %>  
-        <% end %>
+        <% job.errors.full_messages_for(:quantity).each do |message| %>  
+            <%= message %>
+        <% end %>  
     </div>
 
     <div>
