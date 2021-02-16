@@ -1,2 +1,0 @@
-class PublicDomain < ApplicationRecord
-end

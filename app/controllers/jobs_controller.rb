@@ -11,7 +11,7 @@ class JobsController < ApplicationController
             @company.jobs.create!(job_params)
             redirect_to companies_path
         rescue ActiveRecord::RecordInvalid => invalid
-            render :new
+            render 'jobs/new'
         end
     end
 
@@ -21,6 +21,18 @@ class JobsController < ApplicationController
 
     def edit
         @company = Company.find(params[:company_id])
+        @job = Job.find(params[:id])
+    end
+
+    def update
+        @company = Company.find(params[:company_id])
+        @job = Job.find(params[:id])
+        
+        if @job.update(job_params)
+            redirect_to companies_path
+        else
+            render 'jobs/edit'
+        end
     end
 
     private
