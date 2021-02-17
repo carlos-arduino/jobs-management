@@ -13,7 +13,6 @@ feature 'corporate user can add a job' do
         fill_in 'E-mail', with: 'cae@rebase.com'
         fill_in 'Senha', with: '123456'
         click_on 'Log in'
-
         click_on 'Cadastrar oferta de vagas'
 
         fill_in 'Title', with: 'Dev. Junior'
@@ -48,6 +47,7 @@ feature 'corporate user can add a job' do
         page.select 'Júnior', from: 'Level'
         fill_in 'Limit date', with: '28/02/2021'
         fill_in 'Quantity', with: '5'
+
         click_on 'Cancelar'
         
         expect(page).not_to have_content('Título: Dev. Junior')
@@ -73,6 +73,7 @@ feature 'corporate user can add a job' do
         page.select 'Júnior', from: 'Level'
         fill_in 'Limit date', with: ''
         fill_in 'Quantity', with: ''
+        
         click_on 'Criar Job'
 
         expect(page).to have_content('não pode ficar em branco', count: 4)

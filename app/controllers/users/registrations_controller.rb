@@ -29,15 +29,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def domain_exists?
-    Domain.exists?(name: extract_domain)  
+    Domain.exists?(name: extract_domain_from_params)  
   end
 
   def create_domain!
-    Domain.create!(name: extract_domain)
+    Domain.create!(name: extract_domain_from_params)
     @new_company_redirect_seletor = true
   end
 
-  def extract_domain
+  def extract_domain_from_params
     params[:user][:email].gsub(/.+@([^.]+).+/, '\1').downcase
   end
 

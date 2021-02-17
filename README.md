@@ -39,4 +39,12 @@ final.
 
 [ ] Bootstrap 
 
+[ ] Internacionalização 
+
+## Algumas ponderações
+
+[ ] Possibilidade de deletar empresa no modo cascata para models dependentes??? Possível quebra de integridade no model Domain de acordo com arquitetura do schema.
+
+[ ] Até o momento desabilitado feature 'remover inscrição do model USER'. Pois de acordo com sobrecarga no método destroy do RegistrationController irá apagar da tabela Domain a linha referente ao domínio vinculado ao email do usuário deletado.
+
 
