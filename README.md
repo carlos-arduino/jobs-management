@@ -25,13 +25,18 @@ e testes de acordo com a ordem natural dos requisitos do caderno, sendo elas:
 [ ] Vaga é desativada automaticamente
 
 
-### Secundários
+## Secundários
 
 Em virtude do curto do prazo de entrega (21/02/2021) estou focalizando meus esforços
 nas coberturas dos testes e requisitos básicos, tentando deixar a aplicação mais
 próximo da sua total funcionalidade.
 Sendo assim, alguns requisitos secundários - considerados por mim :-) - serão encaixados no
 final.
+
 [ ] Upload de logo
+
 [ ] Inserir seletores :css de precisão em todos os testes vinculados ao id de cada tag div
+
 [ ] Bootstrap 
+
+
