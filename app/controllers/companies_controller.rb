@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
         if @company.save
             redirect_to @company
         else
-            render :new
+            render 'companies/new'
         end
     end
 

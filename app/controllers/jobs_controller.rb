@@ -38,6 +38,12 @@ class JobsController < ApplicationController
         end
     end
 
+    def disable
+        @job = Job.find(params[:id])
+        @job.inativo!
+        redirect_to companies_path
+    end
+
     private
 
     def job_params

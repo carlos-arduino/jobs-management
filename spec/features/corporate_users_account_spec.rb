@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 feature 'corporate user management account' do
-    scenario 'can not allow access to visit user' do
+    scenario 'can not allow access log out user' do
         visit root_path
         click_on 'Corporativo'
 
         expect(current_path).to eq(new_user_session_path)
     end
 
-    scenario 'and can navigate to register page' do
+    scenario 'can navigate to register page' do
         visit root_path
         click_on 'Corporativo'
         click_on 'Sign up'
@@ -16,7 +16,7 @@ feature 'corporate user management account' do
         expect(current_path).to eq(new_user_registration_path)
     end
     
-    scenario 'and can register yourself' do
+    scenario 'can register yourself' do
         visit new_user_registration_path
 
         fill_in 'E-mail', with: 'cae@rebase.com'

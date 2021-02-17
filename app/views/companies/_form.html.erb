@@ -3,37 +3,31 @@
         <%= form.label :name %>
         <%= form.text_field :name %>
         <% company.errors.full_messages_for(:name).each do |message| %>
-        <%= message %>
+            <%= message %>
         <% end %>
     </div>
 
     <div>
         <%= form.label :address %>
         <%= form.text_field :address %>
+        <% company.errors.full_messages_for(:address).each do |message| %>
+            <%= message %>
+        <% end %>
     </div>
 
     <div>
         <%= form.label :cnpj %>
         <%= form.text_field :cnpj %>
-        <% company.errors.full_messages_for(:cnpj).each do |message| %>
-        <%= message %>
-        <% end %>
     </div>
 
     <div>
         <%= form.label :site %>
         <%= form.text_field :site %>
-        <% company.errors.full_messages_for(:site).each do |message| %>
-        <%= message %>
-        <% end %>
     </div>
 
     <div>
         <%= form.label :social_midia %>
         <%= form.text_field :social_midia %>
-        <% company.errors.full_messages_for(:social_midia).each do |message| %>
-        <%= message %>
-        <% end %>
     </div>
 
     <div>

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   }
   
   resources :companies, only: [:new, :create, :show, :index] do
-    resources :jobs , only: [:index, :new, :create, :show, :edit, :update]  
+    resources :jobs , only: [:index, :new, :create, :show, :edit, :update] do
+      post 'disable', on: :member
+    end
   end
   
 end

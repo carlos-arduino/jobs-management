@@ -55,4 +55,27 @@ feature 'corporate user can add a job' do
         expect(page).not_to have_content('Quantidade: 5')
         expect(Job.last).to eq(nil)
     end
+
+    scenario 'and can not add job with empty required fieds' do
+        Domain.create!(name: 'rebase')
+        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456')
+        Company.create!(name: 'Rebase Tecnologia', 
+                        address: 'Rua Alameda Santos, 45',
+                        domain: 'rebase')
+
+        login_as user_rebase, scope: :user
+        visit companies_path
+        click_on 'Cadastrar oferta de vagas'
+
+        fill_in 'Title', with: ''
+        fill_in 'Description', with: ''
+        fill_in 'Income', with: '3000,00'
+        page.select 'Júnior', from: 'Level'
+        fill_in 'Limit date', with: ''
+        fill_in 'Quantity', with: ''
+        click_on 'Criar Job'
+
+        expect(page).to have_content('não pode ficar em branco', count: 4)
+    end
+
 end
