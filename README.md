@@ -1,24 +1,37 @@
-# README
+# Desenvolvedor Caê Arduino 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Neste documento irei atualizando o status dos requisitos conforme caderno
+de obrigação enviado pela Campus Code.
 
-Things you may want to cover:
+## Prioridades
 
-* Ruby version
+Adianto que estou priorizando o back-end e desenvolvendo as funcionalidades
+e testes de acordo com a ordem natural dos requisitos do caderno, sendo elas:
 
-* System dependencies
+[X] Colaborador cria uma conta usando e-mail da empresa
 
-* Configuration
+[X] Colaborador preenche informações da empresa
 
-* Database creation
+[X] Colaborador cadastra uma vaga de emprego
 
-* Database initialization
+[ ] Visitante visualiza empresas e vagas
 
-* How to run the test suite
+[ ] Visitante se candidata para uma vaga
 
-* Services (job queues, cache servers, search engines, etc.)
+[ ] Colaboradores recebem candidaturas
 
-* Deployment instructions
+[ ] Candidato acompanha suas candidaturas
 
-* ...
+[ ] Vaga é desativada automaticamente
+
+
+### Secundários
+
+Em virtude do curto do prazo de entrega (21/02/2021) estou focalizando meus esforços
+nas coberturas dos testes e requisitos básicos, tentando deixar a aplicação mais
+próximo da sua total funcionalidade.
+Sendo assim, alguns requisitos secundários - considerados por mim :-) - serão encaixados no
+final.
+[ ] Upload de logo
+[ ] Inserir seletores :css de precisão em todos os testes vinculados ao id de cada tag div
+[ ] Bootstrap 
