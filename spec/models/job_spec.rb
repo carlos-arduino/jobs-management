@@ -16,11 +16,11 @@ describe Job do
   context 'status ativo by default' do
     it 'for new jobs created' do
       rebase_company = Company.create!(name: 'Rebase Tecnologia', 
-        address: 'Rua Alameda Santos, 45',
-        domain: 'rebase')
+                                       address: 'Rua Alameda Santos, 45',
+                                       domain: 'rebase')
       job = Job.create!(title: 'Dev. Junior', description: 'Desenvolvedor ruby on rails',
-                       income: '3000,00', level: 'Júnior', limit_date: '28/11/2021',
-                       quantity: 5, company: rebase_company)
+                        income: '3000,00', level: 'Júnior', limit_date: '28/11/2021',
+                        quantity: 5, company: rebase_company)
 
       expect(job.ativo?).to be_truthy
     end
