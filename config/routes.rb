@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
   
   get '/jobs', to: 'jobs#index'
+  get 'search', to: 'jobs#search'
   
   resources :companies, only: [:new, :create, :show, :index] do
     resources :jobs , only: [:new, :create, :show, :edit, :update] do

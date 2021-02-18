@@ -1,8 +1,9 @@
 class JobsController < ApplicationController
-    before_action :authenticate_user!, except: [:index]
+    before_action :authenticate_user!, except: [:index, :search]
     
     def index
         @jobs = Job.available_status_and_not_expired
+        @fill_select_company = Company.pluck(:name)
     end
 
     def new
@@ -48,10 +49,18 @@ class JobsController < ApplicationController
         redirect_to companies_path
     end
 
+    def search
+        jobs_founded = Company.find_by(name: params[:c])
+                              .jobs.available_status_and_not_expired
+        @filter_jobs = jobs_founded.where('title like ? OR description like ?',
+                                          "%#{params[:q]}%", "%#{params[:q]}%")
+    end
+
     private
 
     def job_params
-        params.require(:job).permit(:title, :description, :income, :level, :limit_date, :quantity)
+        params.require(:job)
+              .permit(:title, :description, :income, :level, :limit_date, :quantity)
     end
     
 end

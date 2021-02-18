@@ -1,0 +1,21 @@
+<h1>Resultado da pesquisa</h1>
+
+<% if @filter_jobs.any? %>
+    <% @filter_jobs.each do |job| %>
+        <hr>
+            <div id="filter_job-<%= job.id %>">
+                <p><strong>Empresa: <%= "#{job.company.name}" %></strong></p>
+                <p><strong>Título: </strong><%= job.title %></p>
+                <p><strong>Descrição: </strong><%= job.description %></p>
+                <p><strong>Level: </strong><%= job.level %></p>
+                <p><strong>Quantidade: </strong><%= job.quantity %></p>
+                <p><strong>Data Limite: </strong><%= I18n.l job.limit_date %></p>
+            </div>
+        <hr>
+    <% end %>
+<% else %>
+    <p><%= 'Não foram encontrados vagas para essa pesquisa' %></p>
+<% end %>
+
+<strong><%= link_to 'Voltar', jobs_path %></strong>
+

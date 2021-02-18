@@ -1,5 +1,13 @@
-<h1>Vagas disponíveis para candidatos</h1>
+<h3>Busca vagas:</h3>
+<%= form_with url: search_path, method: :get do %>
+  <%= label_tag :q, 'Busca:' %>
+  <%= text_field_tag :q %>
+  <%= label_tag :c, 'Empresa:' %>
+  <%= select_tag :c, options_for_select(@fill_select_company) %>
+  <%= submit_tag 'Pesquisar' %>
+<% end %>
 
+<h3>Vagas disponíveis para candidatos</h3>
 <% @jobs.each do |job| %>
     <hr>
         <div id="job-<%= job.id %>">
