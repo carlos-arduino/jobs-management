@@ -1,25 +1,32 @@
-<h3>Busca vagas:</h3>
-<%= form_with url: search_path, method: :get do %>
-  <%= label_tag :q, 'Busca:' %>
-  <%= text_field_tag :q %>
-  <%= label_tag :c, 'Empresa:' %>
-  <%= select_tag :c, options_for_select(@fill_select_company) %>
-  <%= submit_tag 'Pesquisar' %>
+<h3>Vagas disponíveis para candidatos</h3>
+<% if @jobs.any? %>
+    <h3>Busca vagas:</h3>
+    <%= form_with url: search_path, method: :get do %>
+      <%= label_tag :q, 'Busca:' %>
+      <%= text_field_tag :q %>
+      <%= label_tag :c, 'Empresa:' %>
+      <%= select_tag :c, options_for_select(@fill_select_company) %>
+      <%= submit_tag 'Pesquisar' %>
+    <% end %>
+    <br><hr>
+    
+    <% @jobs.each do |job| %>
+        <hr>
+            <div id="job-<%= job.id %>">
+                <p><strong>Empresa: <%= "#{job.company.name}" %></strong></p>
+                <p><strong>Título: </strong><%= job.title %></p>
+                <p><strong>Descrição: </strong><%= job.description %></p>
+                <p><strong>Level: </strong><%= job.level %></p>
+                <p><strong>Quantidade: </strong><%= job.quantity %></p>
+                <p><strong>Data Limite: </strong><%= I18n.l job.limit_date %></p>
+            </div>
+        <hr>
+    <% end %>
+<% else %>
+    <%= 'Sem vagas cadastradas no momento'%>
 <% end %>
 
-<h3>Vagas disponíveis para candidatos</h3>
-<% @jobs.each do |job| %>
-    <hr>
-        <div id="job-<%= job.id %>">
-            <p><strong>Empresa: <%= "#{job.company.name}" %></strong></p>
-            <p><strong>Título: </strong><%= job.title %></p>
-            <p><strong>Descrição: </strong><%= job.description %></p>
-            <p><strong>Level: </strong><%= job.level %></p>
-            <p><strong>Quantidade: </strong><%= job.quantity %></p>
-            <p><strong>Data Limite: </strong><%= I18n.l job.limit_date %></p>
-        </div>
-    <hr>
-<% end %>
+
 
 
 
