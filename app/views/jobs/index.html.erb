@@ -1,3 +1,17 @@
-<h1>Lista de vagas do domínio da empresa</h1>
+<h1>Vagas disponíveis para candidatos</h1>
 
-<%= link_to 'Adicionar Emprego', new_job_path %>
+<% @jobs.each do |job| %>
+    <hr>
+        <div id="job-<%= job.id %>">
+            <p><strong>Empresa: <%= "#{job.company.name}" %></strong></p>
+            <p><strong>Título: </strong><%= job.title %></p>
+            <p><strong>Descrição: </strong><%= job.description %></p>
+            <p><strong>Level: </strong><%= job.level %></p>
+            <p><strong>Quantidade: </strong><%= job.quantity %></p>
+            <p><strong>Data Limite: </strong><%= I18n.l job.limit_date %></p>
+        </div>
+    <hr>
+<% end %>
+
+
+

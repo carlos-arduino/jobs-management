@@ -6,10 +6,12 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   
+  get '/jobs', to: 'jobs#index'
+  
   resources :companies, only: [:new, :create, :show, :index] do
-    resources :jobs , only: [:index, :new, :create, :show, :edit, :update] do
+    resources :jobs , only: [:new, :create, :show, :edit, :update] do
       post 'disable', on: :member
     end
   end
-  
+
 end

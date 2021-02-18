@@ -23,6 +23,10 @@ class CompaniesController < ApplicationController
         @company = Company.find_by(domain: current_user.extract_domain)
     end
 
+    def visualize
+        @companies = Company.all
+    end
+
     private
 
     def company_params

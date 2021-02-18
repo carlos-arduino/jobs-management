@@ -9,7 +9,7 @@
 
     <div>
         <%= form.label :description %>
-        <%= form.text_field :description %>
+        <%= form.text_area :description %>
         <% job.errors.full_messages_for(:description).each do |message| %>  
             <%= message %>
         <% end %>  

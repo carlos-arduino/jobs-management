@@ -1,6 +1,10 @@
 class JobsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
     
+    def index
+        @jobs = Job.available_status_and_not_expired
+    end
+
     def new
         @company = Company.find(params[:company_id])
         @job = Job.new
