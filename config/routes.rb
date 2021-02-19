@@ -3,7 +3,14 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
+
+  devise_for :candidates , controllers: {
+    registrations: 'candidates/registrations',
+    sessions: 'candidates/sessions',
+    passwords: 'candidates/passwords'
   }
   
   get '/jobs', to: 'jobs#index'

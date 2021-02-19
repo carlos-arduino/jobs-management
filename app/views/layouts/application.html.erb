@@ -15,6 +15,12 @@
     <% if user_signed_in? %>
       <%= current_user.email %>
       <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+    <% elsif %>
+      <% candidate_signed_in? %>
+      <%= link_to 'Editar Perfil', edit_candidate_registration_path %>
+      <%= link_to 'Log out', destroy_candidate_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Log in CANDIDATO', new_candidate_session_path %>
     <% end %>
     </p>
     <p class="notice"><%= notice %></p>
