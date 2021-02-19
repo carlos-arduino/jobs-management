@@ -18,15 +18,24 @@ feature 'guest can navigate to jobs lists' do
         iugu_company = Company.create!(name: 'Iugu Pagamentos', 
                                          address: 'Avenida Paulista, 7',
                                          domain: 'iugu') 
-        job_pleno = Job.create!(title: 'Dev. Pleno', description: 'Desenvolvedor ruby on rails',
-                                income: '5300,00', level: 'Pleno', limit_date: Date.current + 2.day,
-                                quantity: 5, company: rebase_company)
-        job_senior = Job.create!(title: 'Dev. Sênior', description: 'Desenvolvedor C#',
-                                 income: '7000,00', level: 'Sênior', limit_date: Date.current + 3.day,
-                                 quantity: 22, company: rebase_company)
-        job_another_domain = Job.create!(title: 'Dev. Júnior', description: 'Desenvolvedor Javascript',
-                                         income: '1500,00', level: 'Júnior', limit_date: Date.current + 1.day,
-                                         quantity: 13, company: iugu_company)
+        job_pleno = Job.create!(title: 'Dev. Pleno', 
+                                description: 'Desenvolvedor ruby on rails',
+                                income: '5300,00', level: 'Pleno',
+                                limit_date: Date.current + 2.day,
+                                quantity: 5,
+                                company: rebase_company)
+        job_senior = Job.create!(title: 'Dev. Sênior', 
+                                 description: 'Desenvolvedor C#',
+                                 income: '7000,00', level: 'Sênior', 
+                                 limit_date: Date.current + 3.day,
+                                 quantity: 22, 
+                                 company: rebase_company)
+        job_another_domain = Job.create!(title: 'Dev. Júnior', 
+                                         description: 'Desenvolvedor Javascript',
+                                         income: '1500,00', level: 'Júnior', 
+                                         limit_date: Date.current + 1.day,
+                                         quantity: 13, 
+                                         company: iugu_company)
         
         visit jobs_path
         
@@ -56,12 +65,19 @@ feature 'guest can navigate to jobs lists' do
         rebase_company = Company.create!(name: 'Rebase Tecnologia', 
                                          address: 'Rua Alameda Santos, 45',
                                          domain: 'rebase')
-        job_active = Job.create!(title: 'Dev. Pleno', description: 'Desenvolvedor ruby on rails',
-                                 income: '5300,00', level: 'Pleno', limit_date: Date.current + 1.day,
-                                 quantity: 5, company: rebase_company)
-        job_inactive = Job.create!(title: 'Dev. Sênior', description: 'Desenvolvedor C#',
-                                   income: '7000,00', level: 'Sênior', limit_date: Date.current + 2.day,
-                                   quantity: 22, status: :inativo, company: rebase_company)
+        job_active = Job.create!(title: 'Dev. Pleno', 
+                                 description: 'Desenvolvedor ruby on rails',
+                                 income: '5300,00', level: 'Pleno', 
+                                 limit_date: Date.current + 1.day,
+                                 quantity: 5, 
+                                 company: rebase_company)
+        job_inactive = Job.create!(title: 'Dev. Sênior', 
+                                   description: 'Desenvolvedor C#',
+                                   income: '7000,00', level: 'Sênior', 
+                                   limit_date: Date.current + 2.day,
+                                   quantity: 22, 
+                                   status: :inativo, 
+                                   company: rebase_company)
         
         visit jobs_path
 
@@ -84,12 +100,18 @@ feature 'guest can navigate to jobs lists' do
         rebase_company = Company.create!(name: 'Rebase Tecnologia', 
                                          address: 'Rua Alameda Santos, 45',
                                          domain: 'rebase')
-        job_active = Job.create!(title: 'Dev. Pleno', description: 'Desenvolvedor ruby on rails',
-                                 income: '5300,00', level: 'Pleno', limit_date: Date.current + 1.day,
-                                 quantity: 5, company: rebase_company)
-        job_expired = Job.create!(title: 'Dev. Sênior', description: 'Desenvolvedor C#',
-                                  income: '7000,00', level: 'Sênior', limit_date: '17/02/2021',
-                                  quantity: 22, company: rebase_company)
+        job_active = Job.create!(title: 'Dev. Pleno', 
+                                 description: 'Desenvolvedor ruby on rails',
+                                 income: '5300,00', level: 'Pleno', 
+                                 limit_date: Date.current + 1.day,
+                                 quantity: 5, 
+                                 company: rebase_company)
+        job_expired = Job.create!(title: 'Dev. Sênior', 
+                                  description: 'Desenvolvedor C#',
+                                  income: '7000,00', level: 'Sênior', 
+                                  limit_date: '17/02/2021',
+                                  quantity: 22, 
+                                  company: rebase_company)
         
         visit jobs_path
 
