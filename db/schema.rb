@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_144005) do
+ActiveRecord::Schema.define(version: 2021_02_20_132009) do
 
   create_table "candidates", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 2021_02_19_144005) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.text "reason"
+    t.integer "candidate_id", null: false
+    t.integer "job_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["candidate_id"], name: "index_enrollments_on_candidate_id"
+    t.index ["job_id"], name: "index_enrollments_on_job_id"
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.string "income"
@@ -74,5 +85,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_144005) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "enrollments", "candidates"
+  add_foreign_key "enrollments", "jobs"
   add_foreign_key "jobs", "companies"
 end

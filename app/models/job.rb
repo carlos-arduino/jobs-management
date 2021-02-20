@@ -1,5 +1,7 @@
 class Job < ApplicationRecord
   belongs_to :company
+  has_many :enrollments
+  has_many :candidates, through: :enrollments
   
   validates :title, :description, :level, :limit_date, :quantity , presence: true
 
