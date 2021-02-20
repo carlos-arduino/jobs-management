@@ -13,14 +13,16 @@
   <body>
     <p><strong><%= link_to 'JOB HOME', root_path %></strong>
     <% if user_signed_in? %>
-      <%= current_user.email %>
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+      <%= "Usuário: #{current_user.email} " %>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete %><hr>
     <% elsif %>
       <% candidate_signed_in? %>
+      <%= "Usuário: #{current_candidate.email} " %>
       <%= link_to 'Editar Perfil', edit_candidate_registration_path %>
-      <%= link_to 'Log out', destroy_candidate_session_path, method: :delete %>
+      <%= link_to 'Painel', enrollments_path %>
+      <%= link_to 'Log out', destroy_candidate_session_path, method: :delete %><hr>
     <% else %>
-      <%= link_to 'Log in CANDIDATO', new_candidate_session_path %>
+      <%= link_to 'CANDIDATO', new_candidate_session_path %><hr>
     <% end %>
     </p>
     <p class="notice"><%= notice %></p>

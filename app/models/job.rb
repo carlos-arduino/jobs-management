@@ -9,5 +9,10 @@ class Job < ApplicationRecord
 
   scope :available_status, -> { where(status: :ativo) }
   scope :available_status_and_not_expired, -> { available_status.where('limit_date >= ?', Date.current)}
+
+  def enroll!(candidate)
+    return false if self.candidates.exists?(candidate.id)
+    Enrollment.create(job: self, candidate: candidate)
+  end
   
 end

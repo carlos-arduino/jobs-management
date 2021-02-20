@@ -16,7 +16,7 @@ e testes de acordo com a ordem natural dos requisitos do caderno, sendo elas:
 
 [X] Visitante visualiza empresas e vagas
 
-[ ] Visitante se candidata para uma vaga
+[X] Visitante se candidata para uma vaga
 
 [ ] Colaboradores recebem candidaturas
 

@@ -6,6 +6,7 @@
   <p><strong>Quantidade: </strong><%= job.quantity %></p>
   <p><strong>Status: </strong><%= job.status %></p>
   <p><%= link_to 'Editar', edit_company_job_path(job.company, job) %></p>
+  <p><%= link_to 'Visualizar Inscrições', company_job_path(job.company, job) %></p>
 
   <% if job.ativo? %>
     <%= link_to 'Inativar', disable_company_job_path(job.company, job), method: :post %>

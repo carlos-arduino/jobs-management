@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :search]
+    before_action :authenticate_user!, except: [:index, :search, :enroll]
+    before_action :authenticate_candidate!, only: [:enroll]
     
     def index
         @jobs = Job.available_status_and_not_expired
@@ -54,6 +55,15 @@ class JobsController < ApplicationController
                               .jobs.available_status_and_not_expired
         @filter_jobs = jobs_founded.where('title like ? OR description like ?',
                                           "%#{params[:q]}%", "%#{params[:q]}%")
+    end
+
+    def enroll
+        @job = Job.find(params[:id])
+        if @job.enroll!(current_candidate)
+            redirect_to jobs_path, notice: 'Cadastro para vaga realizada com sucesso'
+        else
+            redirect_to root_path, alert: 'Candidato já cadastrado para esta vaga'
+        end
     end
 
     private

@@ -1,0 +1,15 @@
+<h1><strong>Lista de vagas matriculadas</strong></h1>
+
+<% @enrollments.each do |enrollment| %>
+    <p><strong>Status da matricula: <%= enrollment.status %></strong></p>
+    <% job = enrollment.job %>
+    <p><strong>Empresa: </strong><%= job.company.name %></p>
+    <p><strong>Título: </strong><%= job.title %></p>
+    <p><strong>Descrição: </strong><%= job.description %></p>
+    <p><strong>Level: <%= job.level %></p>
+    <p><strong>Salário: </strong><%= job.income %></p>
+    <p><strong>Quantidade: </strong><%= job.quantity %></p>
+    <p><strong>Data Limite: </strong><%= I18n.l job.limit_date %></p><hr>
+<% end %>
+
+<%= link_to 'Voltar', jobs_path %>
