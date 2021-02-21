@@ -2,14 +2,13 @@
 
 <% @enrollments.each do |enrollment| %>
     <p><strong>Status da matricula: <%= enrollment.status %></strong></p>
-    <% job = enrollment.job %>
-    <p><strong>Empresa: </strong><%= job.company.name %></p>
-    <p><strong>Título: </strong><%= job.title %></p>
-    <p><strong>Descrição: </strong><%= job.description %></p>
-    <p><strong>Level: <%= job.level %></p>
-    <p><strong>Salário: </strong><%= job.income %></p>
-    <p><strong>Quantidade: </strong><%= job.quantity %></p>
-    <p><strong>Data Limite: </strong><%= I18n.l job.limit_date %></p><hr>
+    <p><strong>Empresa: </strong><%= enrollment.job.company.name %></p>
+    <p><strong>Título: </strong><%= enrollment.job.title %></p>
+    <p><strong>Descrição: </strong><%= enrollment.job.description %></p>
+    <p><strong>Level: <%= enrollment.job.level %></p>
+    <p><strong>Salário: </strong><%= enrollment.job.income %></p>
+    <p><strong>Quantidade: </strong><%= enrollment.job.quantity %></p>
+    <p><strong>Data Limite: </strong><%= I18n.l enrollment.job.limit_date %></p><hr>
 <% end %>
 
 <%= link_to 'Voltar', jobs_path %>

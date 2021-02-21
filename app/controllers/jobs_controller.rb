@@ -25,7 +25,7 @@ class JobsController < ApplicationController
     end
 
     def show
-        @job = Job.find(params[:id])
+        @job = Job.includes(:enrollments, :candidates).find(params[:id])
     end
 
     def edit
