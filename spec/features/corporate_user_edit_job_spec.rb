@@ -29,7 +29,7 @@ feature 'corporate user can edit a job' do
         expect(page.find("#job-#{job.id}")).to have_content('Descrição: Desenvolvedor C#') 
         expect(page.find("#job-#{job.id}")).to have_content('Level: Pleno') 
         expect(page.find("#job-#{job.id}")).to have_content('Quantidade: 10') 
-        expect(page.find("#job-#{job.id}")).to have_content('Status: ativo')
+        expect(page.find("#job-#{job.id}")).to have_content('Status da vaga: ativo')
         expect(job).to eq(Job.last)
     end
 
@@ -84,7 +84,7 @@ feature 'corporate user can edit a job' do
         job_to_inactive.reload
         job_active.reload
 
-        expect(page.find("#job-#{job_to_inactive.id}")).to have_content('Status: inativo')
+        expect(page.find("#job-#{job_to_inactive.id}")).to have_content('Status da vaga: inativo')
         expect(page.find("#job-#{job_to_inactive.id}")).not_to have_link('Inativar')
         expect(job_to_inactive.inativo?).to be_truthy
         expect(page.find("#job-#{job_active.id}")).to have_link('Inativar')

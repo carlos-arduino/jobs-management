@@ -36,9 +36,9 @@ feature 'guests can search for jobs and company' do
         click_on 'Pesquisar'
 
         expect(current_path).to eq(search_path)
-        expect(page.find("#filter_job-#{job_senior.id}")).to have_content("Empresa: #{job_senior.company.name}")
-        expect(page.find("#filter_job-#{job_senior.id}")).to have_content("Título: #{job_senior.title}")
-        expect(page.find("#filter_job-#{job_senior.id}")).to have_content("Descrição: #{job_senior.description}")
+        expect(page.find("#filter-job-#{job_senior.id}")).to have_content("Empresa: #{job_senior.company.name}")
+        expect(page.find("#filter-job-#{job_senior.id}")).to have_content("Título: #{job_senior.title}")
+        expect(page.find("#filter-job-#{job_senior.id}")).to have_content("Descrição: #{job_senior.description}")
 
         expect(page).not_to have_content("Título: #{job_pleno.title}")
         expect(page).not_to have_content("Descrição: #{job_pleno.description}")
@@ -75,8 +75,8 @@ feature 'guests can search for jobs and company' do
         page.select rebase_company.name, from: 'Empresa:'
         click_on 'Pesquisar'
         
-        expect(page.find("#filter_job-#{job_pleno.id}")).to have_content("Título: #{job_pleno.title}")
-        expect(page.find("#filter_job-#{job.id}")).to have_content("Título: #{job.title}")
+        expect(page.find("#filter-job-#{job_pleno.id}")).to have_content("Título: #{job_pleno.title}")
+        expect(page.find("#filter-job-#{job.id}")).to have_content("Título: #{job.title}")
         expect(page).not_to have_content("Título: #{job_senior.title}")
     end
 
@@ -107,7 +107,7 @@ feature 'guests can search for jobs and company' do
         page.select rebase_company.name, from: 'Empresa:'
         click_on 'Pesquisar'
 
-        expect(page.find("#filter_job-#{equal_content_rebase.id}")).to have_content("Título: #{equal_content_rebase.title}")
+        expect(page.find("#filter-job-#{equal_content_rebase.id}")).to have_content("Título: #{equal_content_rebase.title}")
         expect(page).not_to have_content("Empresa: #{equal_content_iugu.company.name}")
     end
 

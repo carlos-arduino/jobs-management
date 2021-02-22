@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     resources :jobs , only: [:new, :create, :show, :edit, :update] do
       post 'disable', on: :member
       post 'enroll', on: :member
+      resources :enrollments, only: [:show, :edit, :update]
     end
   end
 
   resources :enrollments, only: [:index]
-
 end

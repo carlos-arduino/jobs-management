@@ -1,0 +1,15 @@
+<h1>Detalhes da Candidatura</h1>
+
+<div id="view-enrollment-<%= @enrollment.id %>">
+    <p><strong>Status da Candidatura: </strong><%= @enrollment.status %></p>
+    <p><strong>Nome Completo: </strong><%= @enrollment.candidate.full_name %></p>
+    <p><strong>Nome Social: </strong><%= @enrollment.candidate.social_name %></p>
+    <p><strong>Biografia: </strong><%= @enrollment.candidate.biography %></p>
+    <p><strong>Data de nascimento: </strong><%= I18n.l @enrollment.candidate.birth_date %></p>
+    <p><strong>CPF: </strong><%= @enrollment.candidate.cpf %></p>
+    <p><strong>Celular: </strong><%= @enrollment.candidate.cel_number %></p>
+    <p><strong>E-mail: </strong><%= @enrollment.candidate.email %></p><br>
+    <p><%= link_to 'Editar Candidatura', edit_company_job_enrollment_path(@company, @enrollment.job, @enrollment) %></p><br>
+    <p><%= link_to 'Voltar', company_job_path(@company, @enrollment.job) %></p><br>
+</div>
+

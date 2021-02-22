@@ -3,7 +3,7 @@
 <% if @filter_jobs.any? %>
     <% @filter_jobs.each do |job| %>
         <hr>
-            <div id="filter_job-<%= job.id %>">
+            <div id="filter-job-<%= job.id %>">
                 <p><strong>Empresa: <%= "#{job.company.name}" %></strong></p>
                 <p><strong>Título: </strong><%= job.title %></p>
                 <p><strong>Descrição: </strong><%= job.description %></p>

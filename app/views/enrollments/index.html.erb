@@ -1,7 +1,7 @@
 <h1><strong>Lista de vagas matriculadas</strong></h1>
 
 <% @enrollments.each do |enrollment| %>
-    <p><strong>Status da matricula: <%= enrollment.status %></strong></p>
+    <p><strong>Status da candidatura: <%= enrollment.status %></strong></p>
     <p><strong>Empresa: </strong><%= enrollment.job.company.name %></p>
     <p><strong>Título: </strong><%= enrollment.job.title %></p>
     <p><strong>Descrição: </strong><%= enrollment.job.description %></p>

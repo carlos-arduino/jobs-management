@@ -1,0 +1,19 @@
+<h1>Preencha justificativa para declinar o candidato</h1>
+
+<%= form_with model: [@company, @job, @enrollment], 
+                url: company_job_enrollment_path, 
+                method: :patch do |form| %>
+    <div>
+        <%= form.label :reason %>
+        <%= form.text_area :reason %>
+        <% @enrollment.errors.full_messages_for(:reason).each do |message| %>
+            <%= message %>
+        <% end %>
+    </div><br>
+    
+    <div>
+        <%= form.submit "Declinar Candidato" %>
+    </div>
+<% end %><br>
+
+<%= link_to 'Voltar', company_job_path(@company, @job) %>

@@ -14,6 +14,7 @@
     <p><strong><%= link_to 'JOB HOME', root_path %></strong>
     <% if user_signed_in? %>
       <%= "Usuário: #{current_user.email} " %>
+      <%= link_to 'Painel Empresa', companies_path %>
       <%= link_to 'Log out', destroy_user_session_path, method: :delete %><hr>
     <% elsif %>
       <% candidate_signed_in? %>

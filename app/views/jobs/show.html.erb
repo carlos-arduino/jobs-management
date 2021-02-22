@@ -1,24 +1,24 @@
-<h1><strong>Detalhes da vaga de trabalho criada</strong></h1><br>
+<h1><strong>Detalhes da vaga de trabalho criada</strong></h1>
 
-<p><strong>Título: </strong><%= @job.title %></p>
-<p><strong>Descrição: </strong><%= @job.description %></p>
-<p><strong>Level: </strong><%= @job.level %></p>
-<p><strong>Quantidade: </strong><%= @job.quantity %></p>
-<p><strong>Status: </strong><%= @job.status %></p>
-<p><strong>Salário: </strong><%= @job.income %></p>
-<p><strong>Data Limite: </strong><%= @job.limit_date %></p><hr>
+<div id="job-details-<%= @job.id %>" > 
+    <p><strong>Título: </strong><%= @job.title %></p>
+    <p><strong>Descrição: </strong><%= @job.description %></p>
+    <p><strong>Level: </strong><%= @job.level %></p>
+    <p><strong>Quantidade: </strong><%= @job.quantity %></p>
+    <p><strong>Status: </strong><%= @job.status %></p>
+    <p><strong>Salário: </strong><%= @job.income %></p>
+    <p><strong>Data Limite: </strong><%= @job.limit_date %></p><hr>
+</div>
 
-<h3><strong>Lista de Candidatos aplicados</strong></h3>
+<h2><strong>Lista de Candidatos aplicados</strong></h2><hr>
 
 <% @job.enrollments.each do |enrollment| %>
-    <p><strong>Status: </strong><%= enrollment.status %></p>
+<div id="enrollment-<%= enrollment.id %>">
+    <p><strong>Status da candidatura: </strong><%= link_to enrollment.status, company_job_enrollment_path(@job.company, @job, enrollment) %></p>
     <p><strong>Nome Completo: </strong><%= enrollment.candidate.full_name %></p>
-    <p><strong>Nome Social: </strong><%= enrollment.candidate.social_name %></p>
     <p><strong>Data de nascimento: </strong><%= I18n.l enrollment.candidate.birth_date %></p>
-    <p><strong>CPF: </strong><%= enrollment.candidate.cpf %></p>
     <p><strong>Biografia: </strong><%= enrollment.candidate.biography %></p>
-    <p><strong>Celular: </strong><%= enrollment.candidate.cel_number %></p>
-    <p><strong>E-mail: </strong><%= enrollment.candidate.email %></p><hr>
+</div>
 <% end %>
 
 <p><strong><%= link_to 'Voltar', companies_path %></strong></p>
