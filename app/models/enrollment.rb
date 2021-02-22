@@ -1,6 +1,7 @@
 class Enrollment < ApplicationRecord
   belongs_to :candidate
   belongs_to :job
+  has_one :proposal
 
   validates :reason, length: { minimum: 20 } 
 
