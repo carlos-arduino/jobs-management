@@ -1,11 +1,14 @@
 <h1><strong>Lista de vagas matriculadas</strong></h1>
 
 <% @enrollments.each do |enrollment| %>
-    <p><strong>Status da candidatura: <%= enrollment.status %></strong></p>
+    <p><strong>Status da candidatura: </strong><%= enrollment.status %></p>
+    <% if not enrollment.reason.blank? %>
+        <p><strong>Razão do declinio: </strong><%= enrollment.reason %></p>  
+    <% end %>
     <p><strong>Empresa: </strong><%= enrollment.job.company.name %></p>
     <p><strong>Título: </strong><%= enrollment.job.title %></p>
     <p><strong>Descrição: </strong><%= enrollment.job.description %></p>
-    <p><strong>Level: <%= enrollment.job.level %></p>
+    <p><strong>Level: </strong><%= enrollment.job.level %></p>
     <p><strong>Salário: </strong><%= enrollment.job.income %></p>
     <p><strong>Quantidade: </strong><%= enrollment.job.quantity %></p>
     <p><strong>Data Limite: </strong><%= I18n.l enrollment.job.limit_date %></p><hr>
