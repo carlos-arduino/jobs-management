@@ -20,9 +20,17 @@ Rails.application.routes.draw do
     resources :jobs , only: [:new, :create, :show, :edit, :update] do
       post 'disable', on: :member
       post 'enroll', on: :member
-      resources :enrollments, only: [:show, :edit, :update]
+      resources :enrollments, only: [:show, :edit, :update] do
+        resources :proposals, only: [:index, :new, :create, :show, :edit, :update] do
+          get 'decline', on: :member
+        end
+      end
     end
   end
 
   resources :enrollments, only: [:index]
+  
+  resources :proposals, only: [] do
+    patch 'candidate_declined', on: :member
+  end
 end

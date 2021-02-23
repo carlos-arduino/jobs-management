@@ -1,0 +1,26 @@
+<h1>Justificativa para declínio da proposta</h1> <br>
+<%= @proposal.enrollment %>
+
+<p><strong>Status da candidatura: </strong><%= @enrollment.status %> </p>
+<p><strong>Status da proposta: </strong><%= @proposal.status %> </p>
+<p><strong>Título da vaga: </strong><%= @job.title %> </p>
+<p><strong>Descrição: </strong><%= @job.description %> </p> <br>
+
+<%= form_with model: @proposal, 
+                url: candidate_declined_proposal_path, 
+                method: :patch do |form| %>
+    <div>
+        <%= form.label :reason %>
+        <%= form.text_area :reason %>
+        <% @proposal.errors.full_messages_for(:reason).each do |message| %>
+            <%= message %>
+        <% end %>
+    </div><br>
+    
+    <div>
+        <%= form.submit "Declinar Proposta" %>
+    </div>
+<% end %><br>
+<hr>
+
+<%= link_to 'Voltar', enrollments_path %>

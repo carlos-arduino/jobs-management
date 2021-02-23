@@ -5,6 +5,13 @@
     <% if not enrollment.reason.blank? %>
         <p><strong>Razão do declinio: </strong><%= enrollment.reason %></p>  
     <% end %>
+    <% if not enrollment.proposal.nil? %>
+        <%= link_to 'Proposta enviada pela empresa', 
+            company_job_enrollment_proposal_path(enrollment.job.company, 
+                                                 enrollment.job, 
+                                                 enrollment,
+                                                 enrollment.proposal) %>
+    <% end %>
     <p><strong>Empresa: </strong><%= enrollment.job.company.name %></p>
     <p><strong>Título: </strong><%= enrollment.job.title %></p>
     <p><strong>Descrição: </strong><%= enrollment.job.description %></p>

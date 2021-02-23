@@ -5,5 +5,5 @@ class Enrollment < ApplicationRecord
 
   validates :reason, length: { minimum: 20 } 
 
-  enum status: { pendente: 0, aceito: 2, declinado: 5 }
+  enum status: { pendente: 0, aceito: 2, candidato_recusou: 4, declinado: 5 }
 end

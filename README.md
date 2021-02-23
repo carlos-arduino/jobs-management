@@ -18,9 +18,9 @@ e testes de acordo com a ordem natural dos requisitos do caderno, sendo elas:
 
 [X] Visitante se candidata para uma vaga
 
-[ ] Colaboradores recebem candidaturas
+[X] Colaboradores recebem candidaturas
 
-[ ] Candidato acompanha suas candidaturas
+[X] Candidato acompanha suas candidaturas
 
 [ ] Vaga é desativada automaticamente
 

@@ -1,0 +1,35 @@
+<h1>Formulário para envio de proposta</h1>
+
+<h2>Ao candidato <%= @enrollment.candidate.full_name %></h2><br>
+
+<%= form_with model: [ @company, @job, @enrollment, @proposal ] do |form| %>
+    <div>
+        <%= form.label :message_from_company %>
+        <%= form.text_area :message_from_company %>
+        <% @proposal.errors.full_messages_for(:message_from_company).each do |message| %>  
+            <%= message %>
+        <% end %>  
+    </div><br>
+
+    <div>
+        <%= form.label :salary_proposal %>
+        <%= form.text_field :salary_proposal %>
+        <% @proposal.errors.full_messages_for(:salary_proposal).each do |message| %>  
+            <%= message %>
+        <% end %>
+    </div><br>
+
+    <div>
+        <%= form.label :start_date %>
+        <%= form.date_field :start_date %>
+        <% @proposal.errors.full_messages_for(:start_date).each do |message| %>  
+            <%= message %>
+        <% end %>  
+    </div><br>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %><br>
+
+<%= link_to 'Voltar', company_job_path(@company, @job) %>

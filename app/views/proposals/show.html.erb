@@ -1,0 +1,27 @@
+<h1>Detalhes da proposta</h1>
+<% if candidate_signed_in? %>
+  <p><strong>Status da proposta: </strong><%= @proposal.status %></p>
+  <p><strong>Empresa: </strong><%= @company.name %></p>
+  <p><strong>Título da vaga: </strong><%= @enrollment.job.title %></p>
+  <p><strong>Mensagem da empresa: </strong><%= @proposal.message_from_company %></p>
+  <p><strong>Salário: </strong><%= @proposal.salary_proposal %></p>
+  <p><strong>Data de início: </strong><%= I18n.l @proposal.start_date %></p>
+  <p><strong><%= link_to 'Aceitar', 
+                 company_job_enrollment_proposal_path(@company, 
+                                                      @enrollment.job, 
+                                                      @enrollment, 
+                                                      @proposal),
+                                                      method: :patch,
+                                                      data: { confirm: "Confirmar data para #{ I18n.l @proposal.start_date }" } %>
+    </strong>
+  </p>
+  <p><strong><%= link_to 'Declinar',
+                 decline_company_job_enrollment_proposal_path(@company,
+                                                              @enrollment.job, 
+                                                              @enrollment, 
+                                                              @proposal) %>
+     </strong>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', enrollments_path %>

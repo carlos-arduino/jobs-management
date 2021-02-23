@@ -20,7 +20,7 @@
       <% candidate_signed_in? %>
       <%= "Usuário: #{current_candidate.email} " %>
       <%= link_to 'Editar Perfil', edit_candidate_registration_path %>
-      <%= link_to 'Painel', enrollments_path %>
+      <%= link_to 'Painel Candidato', enrollments_path %>
       <%= link_to 'Log out', destroy_candidate_session_path, method: :delete %><hr>
     <% else %>
       <%= link_to 'CANDIDATO', new_candidate_session_path %><hr>
