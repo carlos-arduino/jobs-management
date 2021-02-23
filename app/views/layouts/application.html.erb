@@ -6,28 +6,32 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <p><strong><%= link_to 'JOB HOME', root_path %></strong>
-    <% if user_signed_in? %>
-      <%= "Usuário: #{current_user.email} " %>
-      <%= link_to 'Painel Empresa', companies_path %>
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete %><hr>
-    <% elsif %>
-      <% candidate_signed_in? %>
-      <%= "Usuário: #{current_candidate.email} " %>
-      <%= link_to 'Editar Perfil', edit_candidate_registration_path %>
-      <%= link_to 'Painel Candidato', enrollments_path %>
-      <%= link_to 'Log out', destroy_candidate_session_path, method: :delete %><hr>
-    <% else %>
-      <%= link_to 'CANDIDATO', new_candidate_session_path %><hr>
-    <% end %>
-    </p>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div id="navigation-menu">
+      <p><strong><%= link_to 'JOB HOME', root_path %></strong>
+        <% if user_signed_in? %>
+          <%= "Usuário: #{current_user.email} " %>
+          <%= link_to 'Painel Empresa', companies_path %>
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete %><hr>
+        <% elsif %>
+        <% candidate_signed_in? %>
+          <%= "Usuário: #{current_candidate.email} " %>
+          <%= link_to 'Editar Perfil', edit_candidate_registration_path %>
+          <%= link_to 'Painel Candidato', enrollments_path %>
+          <%= link_to 'Log out', destroy_candidate_session_path, method: :delete %><hr>
+        <% else %>
+          <%= link_to 'CANDIDATO', new_candidate_session_path %><hr>
+        <% end %>
+      </p>
+    </div>
+    <div id="flash-messages">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
     <%= yield %>
   </body>
 </html>

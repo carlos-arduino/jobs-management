@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 feature 'corporate user management account' do
-    scenario 'can not allow access log out user' do
-        visit root_path
-        click_on 'Corporativo'
-
-        expect(current_path).to eq(new_user_session_path)
-    end
-
     scenario 'can navigate to register page' do
         visit root_path
         click_on 'Corporativo'
@@ -24,7 +17,8 @@ feature 'corporate user management account' do
         fill_in 'Confirme sua senha', with: '123456'
         click_on 'Sign up'
 
-        expect(page).to have_content('Bem vindo! Você realizou seu registro com sucesso.')
+        expect(page.find("#flash-messages")).to have_content('Bem vindo! Você realizou seu registro com sucesso.')
+        expect(page.find("#navigation-menu")).to have_link('Log out')
     end
 
     scenario 'and can not register with different passwords' do
@@ -35,7 +29,14 @@ feature 'corporate user management account' do
         fill_in 'Confirme sua senha', with: '1234567'
         click_on 'Sign up'
 
-        expect(page).to have_content('Não foi possível salvar usuário: 1 erro')
+        expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário: 1 erro')
+    end
+
+    scenario 'do not show link for log-out with no login user' do
+        visit root_path
+        click_on 'Corporativo'
+
+        expect(current_path).to eq(new_user_session_path)
     end
 end
 
