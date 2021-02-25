@@ -1,66 +1,53 @@
 class ProposalsController < ApplicationController
-    before_action :authenticate_user!, only: [:index, :new, :create]
-    before_action :authenticate_candidate!, only: [:update]
+    before_action :authenticate_user!, only: [:new, :create]
+    before_action :authenticate_candidate!, only: [:accept, :decline, :declined]
     
-    def index;end
     
     def new
-        @company = Company.find(params[:company_id])
-        @job = Job.find(params[:job_id])
         @enrollment = Enrollment.find(params[:enrollment_id])
         @proposal = Proposal.new
     end
 
     def create
-        @company = Company.find(params[:company_id])
-        @job = Job.find(params[:job_id])
         @enrollment = Enrollment.find(params[:enrollment_id])
         @proposal = Proposal.new(proposal_params)
         @proposal.enrollment_id = @enrollment.id
         
         if  @proposal.save
-            redirect_to company_job_path(@company, @job), notice: 'Proposta criada com sucesso'
+            redirect_to job_path(@enrollment.job), notice: 'Proposta criada com sucesso'
         else
             render :new
         end
     end
 
     def show
-        @company = Company.find(params[:company_id])
-        @enrollment = Enrollment.find(params[:enrollment_id])
         @proposal = Proposal.find(params[:id])
     end
 
-    def update
+    def accept
         @proposal = Proposal.find(params[:id])
-        @enrollment = Enrollment.find(params[:enrollment_id])
-
         Proposal.transaction do
             begin
-                @proposal.aceito!
-                @enrollment.update_attribute(:status, 'aceito')    
+                @proposal.accepted!
+                @proposal.enrollment.accepted!
             rescue ActiveRecord::RecordInvalid
-                render :show 
+                render :show
             end
         end
         redirect_to enrollments_path, notice: 'Proposta aceita'
     end
 
     def decline
-        @job = Job.find(params[:job_id])
-        @enrollment = Enrollment.find(params[:enrollment_id])
-        @proposal = Proposal.find(params[:id])
+        @proposal = Proposal.includes(:enrollment).find(params[:id])
     end
 
-    def candidate_declined
+    def declined
         @proposal = Proposal.find(params[:id])
-        @proposal.status = 'declinado'
-        @enrollment = @proposal.enrollment
-
         Proposal.transaction do
             begin
-                @proposal.update(declined_params)
-                @enrollment.update_attribute(:status, 'candidato_recusou')    
+                @proposal.status = 'candidate_declined'
+                @proposal.update!(declined_params)
+                @proposal.enrollment.candidate_refused!
             rescue ActiveRecord::RecordInvalid
                 render :decline
             end

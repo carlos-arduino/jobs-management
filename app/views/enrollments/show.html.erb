@@ -8,8 +8,22 @@
     <p><strong>Data de nascimento: </strong><%= I18n.l @enrollment.candidate.birth_date %></p>
     <p><strong>CPF: </strong><%= @enrollment.candidate.cpf %></p>
     <p><strong>Celular: </strong><%= @enrollment.candidate.cel_number %></p>
-    <p><strong>E-mail: </strong><%= @enrollment.candidate.email %></p><br>
-    <p><%= link_to 'Editar Candidatura', edit_company_job_enrollment_path(@company, @enrollment.job, @enrollment) %></p><br>
-    <p><%= link_to 'Voltar', company_job_path(@company, @enrollment.job) %></p><br>
+    <p><strong>E-mail: </strong><%= @enrollment.candidate.email %></p><br><hr>
+
+    <% if @enrollment.proposal %>
+        <p><strong>Status da proposta: <%= @enrollment.proposal.status %></strong></p>
+        <p><strong>Mensagem da empresa: </strong><%= @enrollment.proposal.message_from_company %></p>
+        <p><strong>Salário: </strong><%= @enrollment.proposal.salary_proposal %></p>
+        <p><strong>Data de início: </strong><%= I18n.l @enrollment.proposal.start_date %></p><hr>
+        <% if not @enrollment.proposal.reason.blank? %>
+          <p><strong>Justificatica do declinio: <%= @enrollment.proposal.reason %></strong></p>
+        <% end %>
+
+    <% elsif not @enrollment.declined? %>
+        <p><%= link_to 'Declinar Candidatura', decline_enrollment_path(@enrollment) %></p><br>
+        <p><%= link_to 'Criar Proposta', new_enrollment_proposal_path(@enrollment) %></p><br>  
+    <% end %>  
+    
+    <p><%= link_to 'Voltar', job_path(@enrollment.job) %></p><br>
 </div>
 

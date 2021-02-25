@@ -3,7 +3,7 @@ class Enrollment < ApplicationRecord
   belongs_to :job
   has_one :proposal
 
-  validates :reason, length: { minimum: 20 } 
+  validates :reason, length: { minimum: 20 }, if: :declined?
 
-  enum status: { pendente: 0, aceito: 2, candidato_recusou: 4, declinado: 5 }
+  enum status: { pending: 0, accepted: 2, candidate_refused: 4, declined: 5 }
 end

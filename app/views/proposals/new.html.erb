@@ -2,7 +2,7 @@
 
 <h2>Ao candidato <%= @enrollment.candidate.full_name %></h2><br>
 
-<%= form_with model: [ @company, @job, @enrollment, @proposal ] do |form| %>
+<%= form_with model: [@enrollment, @proposal ] do |form| %>
     <div>
         <%= form.label :message_from_company %>
         <%= form.text_area :message_from_company %>
@@ -32,4 +32,4 @@
     </div>
 <% end %><br>
 
-<%= link_to 'Voltar', company_job_path(@company, @job) %>
+<%= link_to 'Voltar', job_path(@enrollment.job) %>

@@ -1,11 +1,11 @@
-<%= form_with model: [ company, job ] do |form| %>
+<%= form_with model: job.new_record? ? [company, job] : job do |form| %>
     <div>
         <%= form.label :title %>
         <%= form.text_field :title %>
         <% job.errors.full_messages_for(:title).each do |message| %>  
             <%= message %>
         <% end %>  
-    </div>
+    </div><br>
 
     <div>
         <%= form.label :description %>
@@ -13,12 +13,12 @@
         <% job.errors.full_messages_for(:description).each do |message| %>  
             <%= message %>
         <% end %>  
-    </div>
+    </div><br>
 
     <div>
         <%= form.label :income %>
         <%= form.text_field :income %>
-    </div>
+    </div><br>
 
     <div>
         <%= form.label :level %>
@@ -26,7 +26,7 @@
         <% job.errors.full_messages_for(:level).each do |message| %>  
             <%= message %>
         <% end %>  
-    </div>
+    </div><br>
 
     <div>
         <%= form.label :limit_date %>
@@ -34,7 +34,7 @@
         <% job.errors.full_messages_for(:limit_date).each do |message| %>  
             <%= message %>
         <% end %>  
-    </div>
+    </div><br>
 
     <div>
         <%= form.label :quantity %>
@@ -42,10 +42,10 @@
         <% job.errors.full_messages_for(:quantity).each do |message| %>  
             <%= message %>
         <% end %>  
-    </div>
+    </div><br>
 
     <div>
         <%= form.submit %>
-    </div>
+    </div><br>
 <% end %>
-<p><%= link_to 'Cancelar', companies_path %></p>
+<p><%= link_to 'Cancelar', company_page_path %></p>

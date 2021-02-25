@@ -1,8 +1,8 @@
 class Proposal < ApplicationRecord
   belongs_to :enrollment
 
-  validates :start_date, :salary_proposal, presence: true
-  validates :message_from_company, length: { minimum: 20 }
+  validates :start_date, :salary_proposal, presence: true, on: :create
+  validates :message_from_company, length: { minimum: 20 }, on: :create
 
-  enum status: { pendente: 0, aceito: 2, declinado: 5 }
+  enum status: { pending: 0, accepted: 2, candidate_declined: 5 }
 end

@@ -1,7 +1,7 @@
 <h1>Preencha justificativa para declinar o candidato</h1>
 
-<%= form_with model: [@company, @job, @enrollment], 
-                url: company_job_enrollment_path, 
+<%= form_with model: @enrollment, 
+                url: declined_enrollment_path, 
                 method: :patch do |form| %>
     <div>
         <%= form.label :reason %>
@@ -16,8 +16,4 @@
     </div>
 <% end %><br>
 <hr>
-
-<p><%= link_to 'Preencher Formulário de Proposta', 
-       new_company_job_enrollment_proposal_path(@company, @job, @enrollment) %></p><hr>
-
-<%= link_to 'Voltar', company_job_path(@company, @job) %>
+<%= link_to 'Voltar', job_path(@enrollment.job) %>

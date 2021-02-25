@@ -1,4 +1,4 @@
-<h1><strong>Detalhes da vaga de trabalho criada</strong></h1>
+<h1><strong>Detalhes da vaga de trabalho</strong></h1>
 
 <div id="job-details-<%= @job.id %>" > 
     <p><strong>Título: </strong><%= @job.title %></p>
@@ -12,13 +12,10 @@
 
 <h2><strong>Lista de Candidatos aplicados</strong></h2><hr>
 
-<% @job.enrollments.each do |enrollment| %>
-<div id="enrollment-<%= enrollment.id %>">
-    <p><strong>Status da candidatura: </strong><%= link_to enrollment.status, company_job_enrollment_path(@job.company, @job, enrollment) %></p>
-    <p><strong>Nome Completo: </strong><%= enrollment.candidate.full_name %></p>
-    <p><strong>Data de nascimento: </strong><%= I18n.l enrollment.candidate.birth_date %></p>
-    <p><strong>Biografia: </strong><%= enrollment.candidate.biography %></p>
-</div><hr>
+<% if @job.enrollments.any? %>
+    <%= render @job.enrollments %>
+<% else %>
+    <p><h3>Não exitem candidatos matriculados para esta vaga até o momento</h3></p>
 <% end %>
 
-<p><strong><%= link_to 'Voltar', companies_path %></strong></p>
+<p><strong><%= link_to 'Voltar', company_page_path %></strong></p>

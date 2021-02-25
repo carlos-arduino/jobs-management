@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :search, :enroll]
+    before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :disable]
     before_action :authenticate_candidate!, only: [:enroll]
     
     def index
@@ -14,13 +14,12 @@ class JobsController < ApplicationController
     
     def create
         @company = Company.find(params[:company_id])
-        @job = Job.new(job_params)
-        @job.company_id = @company.id
+        @job = @company.jobs.new(job_params)
 
         if @job.save
-            redirect_to companies_path
+            redirect_to job_path(@job)
         else
-            render 'jobs/new'
+            render :new
         end
     end
 
@@ -29,25 +28,26 @@ class JobsController < ApplicationController
     end
 
     def edit
-        @company = Company.find(params[:company_id])
         @job = Job.find(params[:id])
     end
 
     def update
-        @company = Company.find(params[:company_id])
         @job = Job.find(params[:id])
         
         if @job.update(job_params)
-            redirect_to companies_path
+            redirect_to job_path(@job)
         else
-            render 'jobs/edit'
+            render :edit
         end
     end
 
     def disable
         @job = Job.find(params[:id])
-        @job.inativo!
-        redirect_to companies_path
+        if @job.inactive!
+            redirect_to job_path(@job), notice: 'Vaga inativada com sucesso'
+        else
+            redirect_to company_page_path, alert: 'Falha na inativação da vaga'
+        end
     end
 
     def search

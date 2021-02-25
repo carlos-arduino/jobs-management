@@ -20,12 +20,12 @@
                 <p><strong>Level: </strong><%= job.level %></p>
                 <p><strong>Quantidade: </strong><%= job.quantity %></p>
                 <p><strong>Data Limite: </strong><%= I18n.l job.limit_date %></p>
-                <p><%= link_to 'Aplicar para a vaga', enroll_company_job_path(job.company, job), method: :post %></p>
+                <p><%= link_to 'Aplicar para a vaga', enroll_job_path(job), method: :post %></p>
             </div>
         <hr>
     <% end %>
 <% else %>
-    <%= 'Sem vagas cadastradas no momento'%>
+    <h3>Sem vagas cadastradas até o momento</h3>
 <% end %>
 
 

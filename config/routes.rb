@@ -3,34 +3,35 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions',
-    passwords: 'users/passwords'
+    sessions: 'users/sessions'
   }
 
   devise_for :candidates , controllers: {
     registrations: 'candidates/registrations',
-    sessions: 'candidates/sessions',
-    passwords: 'candidates/passwords'
+    sessions: 'candidates/sessions'
   }
   
-  get '/jobs', to: 'jobs#index'
+  get 'company_page', to: 'companies#index'
   get 'search', to: 'jobs#search'
   
-  resources :companies, only: [:new, :create, :show, :index] do
-    resources :jobs , only: [:new, :create, :show, :edit, :update] do
-      post 'disable', on: :member
-      post 'enroll', on: :member
-      resources :enrollments, only: [:show, :edit, :update] do
-        resources :proposals, only: [:index, :new, :create, :show, :edit, :update] do
-          get 'decline', on: :member
-        end
-      end
-    end
+  resources :jobs, only: [:index, :show, :edit, :update] do
+    post 'disable', on: :member
+    post 'enroll', on: :member
   end
 
-  resources :enrollments, only: [:index]
+  resources :enrollments, only: [:index, :show] do
+    get 'decline', on: :member
+    patch 'declined', on: :member
+    resources :proposals, only: [:new, :create]
+  end
   
-  resources :proposals, only: [] do
-    patch 'candidate_declined', on: :member
+  resources :companies, only: [:edit, :update] do
+    resources :jobs , only: [:new, :create]
+  end
+    
+  resources :proposals, only: [:show] do
+    patch 'accept', on: :member
+    get 'decline', on: :member
+    patch 'declined', on: :member
   end
 end

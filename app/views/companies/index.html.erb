@@ -1,9 +1,15 @@
-<h1>Painel da empresa <%= "#{@company.name}" %> </h1><br>
+<h1>Painel da empresa <%= link_to "#{@company.name}", edit_company_path(@company) %> </h1><br>
 <p>Domínio <%= "#{@company.domain}" %></p><br>
 <h3><%= link_to 'Cadastrar oferta de vagas', new_company_job_path(@company) %></h3>
-<p><h2>Vagas Cadastradas</h2></p>
 
-<%= render @company.jobs %>
+<% if @company.jobs.any? %>
+    <p><h2>Vagas Cadastradas</h2></p>
+    <%= render @company.jobs %>
+<% else %>
+    <p><h3>Sem vagas cadastradas no momento</h3></p>
+<% end %>
+
+
 
 
 

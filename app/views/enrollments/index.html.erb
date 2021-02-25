@@ -2,15 +2,8 @@
 
 <% @enrollments.each do |enrollment| %>
     <p><strong>Status da candidatura: </strong><%= enrollment.status %></p>
-    <% if not enrollment.reason.blank? %>
+    <% if enrollment.declined? %>
         <p><strong>Razão do declinio: </strong><%= enrollment.reason %></p>  
-    <% end %>
-    <% if not enrollment.proposal.nil? %>
-        <%= link_to 'Proposta enviada pela empresa', 
-            company_job_enrollment_proposal_path(enrollment.job.company, 
-                                                 enrollment.job, 
-                                                 enrollment,
-                                                 enrollment.proposal) %>
     <% end %>
     <p><strong>Empresa: </strong><%= enrollment.job.company.name %></p>
     <p><strong>Título: </strong><%= enrollment.job.title %></p>
@@ -18,7 +11,11 @@
     <p><strong>Level: </strong><%= enrollment.job.level %></p>
     <p><strong>Salário: </strong><%= enrollment.job.income %></p>
     <p><strong>Quantidade: </strong><%= enrollment.job.quantity %></p>
-    <p><strong>Data Limite: </strong><%= I18n.l enrollment.job.limit_date %></p><hr>
-<% end %>
+    <p><strong>Data Limite: </strong><%= I18n.l enrollment.job.limit_date %></p>
+
+    <% if enrollment.proposal %>
+        <%= link_to 'Você tem uma proposta para esta vaga', proposal_path(enrollment.proposal) %>
+    <% end %>
+<% end %><hr>
 
 <%= link_to 'Voltar', jobs_path %>
