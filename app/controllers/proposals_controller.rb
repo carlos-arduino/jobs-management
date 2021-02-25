@@ -30,11 +30,11 @@ class ProposalsController < ApplicationController
             begin
                 @proposal.accepted!
                 @proposal.enrollment.accepted!
+                redirect_to enrollments_path, notice: 'Proposta aceita'
             rescue ActiveRecord::RecordInvalid
                 render :show
             end
         end
-        redirect_to enrollments_path, notice: 'Proposta aceita'
     end
 
     def decline
@@ -48,11 +48,11 @@ class ProposalsController < ApplicationController
                 @proposal.status = 'candidate_declined'
                 @proposal.update!(declined_params)
                 @proposal.enrollment.candidate_refused!
+                redirect_to enrollments_path, alert: 'Proposta declinada pelo candidato'
             rescue ActiveRecord::RecordInvalid
                 render :decline
             end
         end
-        redirect_to enrollments_path, alert: 'Proposta declinada pelo candidato'
     end
 
     private
