@@ -11,5 +11,3 @@ feature 'Visitor visit home page and' do
         expect(page).not_to have_link('Sign up')
     end
 end
-
-# TODO = WIP inserir processo para cadastro de guest que irão aplicar para as vagas

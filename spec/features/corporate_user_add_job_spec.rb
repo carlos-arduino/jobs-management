@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'corporate user can add a job' do
     scenario 'from root path successfully' do
-        Domain.create!(name: 'rebase')
-        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456')
-        Company.create!(name: 'Rebase Tecnologia', 
-                        address: 'Rua Alameda Santos, 45',
-                        domain: 'rebase')
+        company_rebase = Company.create!(name: 'Rebase Tecnologia', 
+                                         address: 'Rua Alameda Santos, 45',
+                                         domain: 'rebase')
+        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456',
+                                   company: company_rebase)
 
         visit root_path
         click_on 'Corporativo'        
@@ -19,26 +19,28 @@ feature 'corporate user can add a job' do
         fill_in 'Description', with: 'Desenvolvedor ruby'
         fill_in 'Income', with: '3000,00'
         page.select 'Júnior', from: 'Level'
-        fill_in 'Limit date', with: '28/02/2021'
+        fill_in 'Limit date', with: '28/02/2022'
         fill_in 'Quantity', with: '5'
 
         click_on 'Criar Job'
 
-        expect(current_path).to eq(companies_path)
+        job_created = Job.last
+
+        expect(current_path).to eq(job_path(job_created))
         expect(page).to have_content('Título: Dev. Junior')
         expect(page).to have_content('Descrição: Desenvolvedor ruby')
         expect(page).to have_content('Quantidade: 5')
     end
 
     scenario 'and can cancel process' do
-        Domain.create!(name: 'rebase')
-        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456')
-        Company.create!(name: 'Rebase Tecnologia', 
-                        address: 'Rua Alameda Santos, 45',
-                        domain: 'rebase')
+        company_rebase = Company.create!(name: 'Rebase Tecnologia', 
+                                         address: 'Rua Alameda Santos, 45',
+                                         domain: 'rebase')
+        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456',
+                                   company: company_rebase)
 
         login_as user_rebase, scope: :user
-        visit companies_path
+        visit company_page_path
         click_on 'Cadastrar oferta de vagas'
 
         fill_in 'Title', with: 'Dev. Junior'
@@ -57,14 +59,14 @@ feature 'corporate user can add a job' do
     end
 
     scenario 'and can not add job with empty required fieds' do
-        Domain.create!(name: 'rebase')
-        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456')
-        Company.create!(name: 'Rebase Tecnologia', 
-                        address: 'Rua Alameda Santos, 45',
-                        domain: 'rebase')
+        company_rebase = Company.create!(name: 'Rebase Tecnologia', 
+                                         address: 'Rua Alameda Santos, 45',
+                                         domain: 'rebase')
+        user_rebase = User.create!(email: 'cae@rebase.com', password: '123456',
+                                   company: company_rebase)
 
         login_as user_rebase, scope: :user
-        visit companies_path
+        visit company_page_path
         click_on 'Cadastrar oferta de vagas'
 
         fill_in 'Title', with: ''

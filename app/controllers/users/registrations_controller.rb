@@ -36,7 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def company_generated_with_new_user?(user, company)
     interval_seconds = (user.created_at - company.created_at) * 1.0
-    interval_seconds < 5.0
+    interval_seconds < 2.0
   end
 
   def extract_domain_from_params

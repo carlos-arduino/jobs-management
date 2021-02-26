@@ -48,4 +48,4 @@
         <%= form.submit %>
     </div><br>
 <% end %>
-<p><%= link_to 'Cancelar', company_page_path %></p>
+<p><%= link_to 'Cancelar', job.new_record? ? company_page_path : job_path(job) %></p>

@@ -1,9 +1,7 @@
 require 'rails_helper'
 
-feature 'guests can search for jobs and company' do
+feature 'visitors can search for jobs and company' do
     scenario 'through description content' do
-        Domain.create!(name: 'rebase')
-        Domain.create!(name: 'iugu')
         rebase_company = Company.create!(name: 'Rebase Tecnologia', 
                                          address: 'Rua Alameda Santos, 45',
                                          domain: 'rebase')
@@ -47,7 +45,6 @@ feature 'guests can search for jobs and company' do
     end
 
     scenario 'through title content' do
-        Domain.create!(name: 'rebase')
         rebase_company = Company.create!(name: 'Rebase Tecnologia', 
                                          address: 'Rua Alameda Santos, 45',
                                          domain: 'rebase') 
@@ -81,8 +78,6 @@ feature 'guests can search for jobs and company' do
     end
 
     scenario 'through selected company filter' do
-        Domain.create!(name: 'rebase')
-        Domain.create!(name: 'iugu')
         rebase_company = Company.create!(name: 'Rebase Tecnologia', 
                                          address: 'Rua Alameda Santos, 45',
                                          domain: 'rebase')
@@ -112,8 +107,6 @@ feature 'guests can search for jobs and company' do
     end
 
     scenario 'and show message for not found job' do
-        Domain.create!(name: 'rebase')
-        Domain.create!(name: 'iugu')
         rebase_company = Company.create!(name: 'Rebase Tecnologia', 
                                          address: 'Rua Alameda Santos, 45',
                                          domain: 'rebase')
@@ -151,7 +144,6 @@ feature 'guests can search for jobs and company' do
     end
 
     scenario 'and does not search for expired or inactivated jobs' do
-        Domain.create!(name: 'rebase')
         rebase_company = Company.create!(name: 'Rebase Tecnologia', 
                                          address: 'Rua Alameda Santos, 45',
                                          domain: 'rebase')
@@ -160,7 +152,7 @@ feature 'guests can search for jobs and company' do
                                 income: '5300,00', level: 'Pleno', 
                                 limit_date: Date.current + 2.day,
                                 quantity: 5,
-                                status: :inativo, 
+                                status: :inactive, 
                                 company: rebase_company)
         job_expired = Job.create!(title: 'Dev. Pleno', 
                                  description: 'Desenvolvedor C#',
@@ -171,7 +163,7 @@ feature 'guests can search for jobs and company' do
 
         visit jobs_path
         
-        expect(page).to have_content('Sem vagas cadastradas no momento')
+        expect(page).to have_content('Sem vagas cadastradas até o momento')
         expect(page).not_to have_content('Pesquisar')
     end
 

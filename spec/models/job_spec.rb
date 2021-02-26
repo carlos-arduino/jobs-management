@@ -22,7 +22,7 @@ describe Job do
                         income: '3000,00', level: 'Júnior', limit_date: '28/11/2021',
                         quantity: 5, company: rebase_company)
 
-      expect(job.ativo?).to be_truthy
+      expect(job.active?).to be_truthy
     end
   end
 end
