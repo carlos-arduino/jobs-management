@@ -1,5 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Proposal, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Proposal do
+  context 'validation' do
+    it { should validate_presence_of(:start_date) }
+    
+    it { should validate_presence_of(:salary_proposal) }
+
+  end
 end
