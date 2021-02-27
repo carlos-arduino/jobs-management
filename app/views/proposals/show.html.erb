@@ -1,6 +1,6 @@
 <h1>Detalhes da proposta</h1>
 
-<p><strong>Status da proposta: </strong><%= @proposal.status %></p>
+<p><strong>Status da proposta: </strong><%= Proposal.human_enum_name(:status, @proposal.status) %></p>
 <p><strong>Título da vaga: </strong><%= @proposal.enrollment.job.title %></p>
 <p><strong>Mensagem da empresa: </strong><%= @proposal.message_from_company %></p>
 <p><strong>Salário: </strong><%= @proposal.salary_proposal %></p>

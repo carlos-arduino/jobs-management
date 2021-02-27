@@ -1,0 +1,55 @@
+pt-BR:
+  activerecord:
+    models:
+      company:
+        one: Empresa
+        other: Empresas
+      job:
+        one: Emprego
+        other: Empregos
+      enrollment:
+        one: Matrícula
+        other: Matrículas
+      proposal:
+        one: Proposta
+        other: Propostas
+    attributes:
+      company:
+        name: "Nome"
+        address: "Endereço"
+        social_media: "Mídia Social"
+        domain: "Domínio"
+      job:
+        title: "Título"
+        income: "Salário"
+        level: "Nível"
+        limit_date: "Data limite"
+        description: "Descrição"
+        domain: "Domínio"
+        quantity: "Quantidade"
+        status:
+          active: "Ativo"
+          inactive: "Inativo"
+      enrollment:
+        reason: "Justificativa"
+        status:
+          pending: "Pendente"
+          accepted: "Aceito"
+          candidate_refused: "Candidato recusou"
+          declined: "Declinado pela empresa"
+      proposal:
+        reason: "Justificativa"
+        start_date: "Data de início"
+        message_from_company: "Mensagem da empresa"
+        salary_proposal: "Proposta salarial"
+        status:
+          pending: "Pendente"
+          accepted: "Aceito"
+          candidate_declined: "Candidato declinou"
+
+
+
+
+
+
+      

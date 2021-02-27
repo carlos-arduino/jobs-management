@@ -1,7 +1,7 @@
 <h1>Detalhes da Candidatura</h1>
 
 <div id="view-enrollment-<%= @enrollment.id %>">
-    <p><strong>Status da Candidatura: </strong><%= @enrollment.status %></p>
+    <p><strong>Status da Candidatura: </strong><%= Enrollment.human_enum_name(:status, @enrollment.status) %></p>
     <p><strong>Nome Completo: </strong><%= @enrollment.candidate.full_name %></p>
     <p><strong>Nome Social: </strong><%= @enrollment.candidate.social_name %></p>
     <p><strong>Biografia: </strong><%= @enrollment.candidate.biography %></p>
@@ -11,7 +11,7 @@
     <p><strong>E-mail: </strong><%= @enrollment.candidate.email %></p><br><hr>
 
     <% if @enrollment.proposal %>
-        <p><strong>Status da proposta: <%= @enrollment.proposal.status %></strong></p>
+        <p><strong>Status da proposta: <%= Proposal.human_enum_name(:status, @enrollment.proposal.status) %></strong></p>
         <p><strong>Mensagem da empresa: </strong><%= @enrollment.proposal.message_from_company %></p>
         <p><strong>Salário: </strong><%= @enrollment.proposal.salary_proposal %></p>
         <p><strong>Data de início: </strong><%= I18n.l @enrollment.proposal.start_date %></p><hr>

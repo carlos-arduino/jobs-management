@@ -4,7 +4,7 @@
   <p><strong>Descrição: </strong><%= job.description %></p>
   <p><strong>Level: </strong><%= job.level %></p>
   <p><strong>Quantidade: </strong><%= job.quantity %></p>
-  <p><strong>Status da vaga: </strong><%= job.status %></p>
+  <p><strong>Status da vaga: </strong><%= Job.human_enum_name(:status, job.status) %></p>
   <p><%= link_to 'Editar', edit_job_path(job) %></p>
   <% if job.enrollments.any? %>
     <p><%= link_to 'Visualizar Inscrições', job_path(job) %></p>  

@@ -1,5 +1,6 @@
 <div id="enrollment-<%= enrollment.id %>">
-    <p><strong>Status da candidatura: </strong><%= link_to enrollment.status, enrollment_path(enrollment) %></p>
+    <p><strong>Status da candidatura: </strong><%= link_to Enrollment.human_enum_name(:status, enrollment.status),
+                                                           enrollment_path(enrollment) %></p>
     <p><strong>Nome Completo: </strong><%= enrollment.candidate.full_name %></p>
     <p><strong>Data de nascimento: </strong><%= I18n.l enrollment.candidate.birth_date %></p>
     <p><strong>Biografia: </strong><%= enrollment.candidate.biography %></p>

@@ -17,7 +17,7 @@ class JobsController < ApplicationController
         @job = @company.jobs.new(job_params)
 
         if @job.save
-            redirect_to job_path(@job)
+            redirect_to job_path(@job), notice: 'Vaga criada com sucesso'
         else
             render :new
         end

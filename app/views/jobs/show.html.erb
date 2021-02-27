@@ -5,7 +5,7 @@
     <p><strong>Descrição: </strong><%= @job.description %></p>
     <p><strong>Level: </strong><%= @job.level %></p>
     <p><strong>Quantidade: </strong><%= @job.quantity %></p>
-    <p><strong>Status: </strong><%= @job.status %></p>
+    <p><strong>Status: </strong><%= Job.human_enum_name(:status, @job.status) %></p>
     <p><strong>Salário: </strong><%= @job.income %></p>
     <p><strong>Data Limite: </strong><%= @job.limit_date %></p><hr>
 </div>
