@@ -35,16 +35,48 @@ final.
 
 [ ] Upload de logo
 
-[ ] Inserir seletores :css de precisão em todos os testes vinculados ao id de cada tag div
+[X] Inserir seletores :css de precisão em todos os testes vinculados ao id de cada tag div
 
 [ ] Bootstrap 
 
-[ ] Internacionalização 
+[X] Internacionalização 
 
 ## Algumas ponderações
 
 [ ] Possibilidade de deletar empresa no modo cascata para models dependentes??? Possível quebra de integridade no model Domain de acordo com arquitetura do schema.
 
 [ ] Até o momento desabilitado feature 'remover inscrição do model USER'. Pois de acordo com sobrecarga no método destroy do RegistrationController irá apagar da tabela Domain a linha referente ao domínio vinculado ao email do usuário deletado.
+
+## Gems utilizadas no desenvolvimento
+
+* Devise - Gerenciamento de autenticação e autorização 
+* Rspec-rails e Capybara - Testes de integração
+* Rspec e Shoulda Matchers - Testes unitários
+
+## Instruções para rodar
+1. Clone o projeto
+2. Na raiz do projeto rode o comando *bin/setup*
+3. Execute o comando rails *db:migrate*
+4. Execute o comando rails *db:seed*
+
+## Registros criados no banco contidos no arquivo seeds.rb
+
+### Empresas
+* Rebase Tecnologia
+* Vindi Serviços de Pagamentos
+
+### Usuários Corporativos associados às empresas
+* [Rebase] - **email:** paulo@rebase.com **password:** 123456
+* [Vindi] - **email:** maria@vindi.com **password:** 111111
+
+### Vagas de emprego criadas e associadas às empresas
+* [Rebase] - 3 vagas -> Dev. Júnior, Dev. Pleno, Analista de PO
+* [Vindi] - 2 vagas -> Desenvolvedor C#, Tech Lead Full Stack
+*Nota: Todas as vagas são criadas com status ativo como default*
+
+### Candidatos
+* [Cleber] - **email:** cleber@gmail.com **password:** 222222
+* [Lucas] - **email:** lucas@gmail.com **password:** 333333
+ 
 
 
