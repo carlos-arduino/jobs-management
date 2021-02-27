@@ -17,21 +17,21 @@ feature 'corporate user can edit a job' do
         visit company_page_path
         click_on 'Editar'
         
-        fill_in 'Title', with: 'Dev. Pleno'
-        fill_in 'Description', with: 'Desenvolvedor C#'
-        fill_in 'Income', with: '3500,00'
-        page.select 'Pleno', from: 'Level'
-        fill_in 'Limit date', with: '29/03/2021'
-        fill_in 'Quantity', with: '10'
+        fill_in 'Título', with: 'Dev. Pleno'
+        fill_in 'Descrição', with: 'Desenvolvedor C#'
+        fill_in 'Salário', with: '3500,00'
+        page.select 'Pleno', from: 'Nível'
+        fill_in 'Data limite', with: '29/03/2021'
+        fill_in 'Quantidade', with: '10'
 
-        click_on 'Atualizar Job'
+        click_on 'Atualizar Emprego'
         job.reload
 
         expect(page.find("#job-details-#{job.id}")).to have_content('Título: Dev. Pleno')
         expect(page.find("#job-details-#{job.id}")).to have_content('Descrição: Desenvolvedor C#') 
         expect(page.find("#job-details-#{job.id}")).to have_content('Level: Pleno') 
         expect(page.find("#job-details-#{job.id}")).to have_content('Quantidade: 10') 
-        expect(page.find("#job-details-#{job.id}")).to have_content('Status: active')
+        expect(page.find("#job-details-#{job.id}")).to have_content('Status: Ativo')
         expect(job).to eq(Job.last)
     end
 
@@ -51,12 +51,12 @@ feature 'corporate user can edit a job' do
         visit company_page_path
         click_on 'Editar'
         
-        fill_in 'Title', with: 'Dev. Pleno'
-        fill_in 'Description', with: 'Desenvolvedor C#'
-        fill_in 'Income', with: '3500,00'
-        page.select 'Pleno', from: 'Level'
-        fill_in 'Limit date', with: '29/03/2021'
-        fill_in 'Quantity', with: '10'
+        fill_in 'Título', with: 'Dev. Pleno'
+        fill_in 'Descrição', with: 'Desenvolvedor C#'
+        fill_in 'Salário', with: '3500,00'
+        page.select 'Pleno', from: 'Nível'
+        fill_in 'Data limite', with: '29/03/2021'
+        fill_in 'Quantidade', with: '10'
 
         click_on 'Cancelar'
         job.reload
@@ -92,7 +92,7 @@ feature 'corporate user can edit a job' do
         job_to_inactive.reload
         job_active.reload
 
-        expect(page.find("#job-details-#{job_to_inactive.id}")).to have_content('Status: inactive')
+        expect(page.find("#job-details-#{job_to_inactive.id}")).to have_content('Status: Inativo')
         expect(job_to_inactive.inactive?).to be_truthy
         expect(job_active.active?).to be_truthy
     end

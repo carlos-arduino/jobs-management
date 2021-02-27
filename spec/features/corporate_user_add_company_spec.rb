@@ -28,18 +28,18 @@ feature 'corporate user can add a company' do
 
         click_on 'Sign up'
 
-        fill_in 'Name', with: 'Campus Code Ltda.'
-        fill_in 'Address', with: 'Alameda Santos, 41'
+        fill_in 'Nome', with: 'Campus Code Ltda.'
+        fill_in 'Endereço', with: 'Alameda Santos, 41'
         fill_in 'Cnpj', with: '12345678/12'
         fill_in 'Site', with: 'www.campuscode.com.br'
         fill_in 'Social midia', with: 'campus.facebook.com.bla'
         
-        click_on 'Atualizar Company'
+        click_on 'Atualizar Empresa'
 
         expect(current_path).to eq(company_page_path)
     end
 
-    scenario 'and do not show add company if a email domain exists' do
+    scenario 'and do not shlow add company if a email domain exists' do
         Company.create!(name: 'Rebase', address: 'Alameda Santos, 45',
                         domain: 'rebase')
         sleep 3
@@ -68,13 +68,13 @@ feature 'corporate user can add a company' do
 
         click_on 'Sign up'
 
-        fill_in 'Name', with: ''
-        fill_in 'Address', with: 'Av. Paulista'
+        fill_in 'Nome', with: ''
+        fill_in 'Endereço', with: 'Av. Paulista'
         fill_in 'Cnpj', with: '12345678/12'
         fill_in 'Site', with: 'www.campuscode.com.br'
         fill_in 'Social midia', with: 'campus.facebook.com.bla'
         
-        click_on 'Atualizar Company'
+        click_on 'Atualizar Empresa'
 
         expect(page).to have_content('não pode ficar em branco', count: 1)
     end

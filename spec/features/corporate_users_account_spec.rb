@@ -29,7 +29,7 @@ feature 'corporate user management account' do
         fill_in 'Confirme sua senha', with: '1234567'
         click_on 'Sign up'
 
-        expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário: 1 erro')
+        expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário corporativo: 1 erro')
     end
 
     scenario 'do not show link for log-out with no login user' do
@@ -60,7 +60,7 @@ feature 'corporate user management account' do
         fill_in 'Confirme sua senha', with: '123456'
         click_on 'Sign up'
 
-        expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário: 1 erro')
+        expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário corporativo: 1 erro')
     end
 end
 

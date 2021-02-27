@@ -15,14 +15,14 @@ feature 'corporate user can add a job' do
         click_on 'Log in'
         click_on 'Cadastrar oferta de vagas'
 
-        fill_in 'Title', with: 'Dev. Junior'
-        fill_in 'Description', with: 'Desenvolvedor ruby'
-        fill_in 'Income', with: '3000,00'
-        page.select 'Júnior', from: 'Level'
-        fill_in 'Limit date', with: '28/02/2022'
-        fill_in 'Quantity', with: '5'
+        fill_in 'Título', with: 'Dev. Junior'
+        fill_in 'Descrição', with: 'Desenvolvedor ruby'
+        fill_in 'Salário', with: '3000,00'
+        page.select 'Júnior', from: 'Nível'
+        fill_in 'Data limite', with: '28/02/2022'
+        fill_in 'Quantidade', with: '5'
 
-        click_on 'Criar Job'
+        click_on 'Criar Emprego'
 
         job_created = Job.last
 
@@ -43,12 +43,12 @@ feature 'corporate user can add a job' do
         visit company_page_path
         click_on 'Cadastrar oferta de vagas'
 
-        fill_in 'Title', with: 'Dev. Junior'
-        fill_in 'Description', with: 'Desenvolvedor ruby'
-        fill_in 'Income', with: '3000,00'
-        page.select 'Júnior', from: 'Level'
-        fill_in 'Limit date', with: '28/02/2021'
-        fill_in 'Quantity', with: '5'
+        fill_in 'Título', with: 'Dev. Junior'
+        fill_in 'Descrição', with: 'Desenvolvedor ruby'
+        fill_in 'Salário', with: '3000,00'
+        page.select 'Júnior', from: 'Nível'
+        fill_in 'Data limite', with: '28/02/2021'
+        fill_in 'Quantidade', with: '5'
 
         click_on 'Cancelar'
         
@@ -69,14 +69,14 @@ feature 'corporate user can add a job' do
         visit company_page_path
         click_on 'Cadastrar oferta de vagas'
 
-        fill_in 'Title', with: ''
-        fill_in 'Description', with: ''
-        fill_in 'Income', with: '3000,00'
-        page.select 'Júnior', from: 'Level'
-        fill_in 'Limit date', with: ''
-        fill_in 'Quantity', with: ''
+        fill_in 'Título', with: ''
+        fill_in 'Descrição', with: ''
+        fill_in 'Salário', with: '3000,00'
+        page.select 'Júnior', from: 'Nível'
+        fill_in 'Data limite', with: ''
+        fill_in 'Quantidade', with: ''
         
-        click_on 'Criar Job'
+        click_on 'Criar Emprego'
 
         expect(page).to have_content('não pode ficar em branco', count: 4)
     end
