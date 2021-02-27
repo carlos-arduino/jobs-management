@@ -72,11 +72,11 @@ final.
 ### Vagas de emprego criadas e associadas às empresas
 * [Rebase] - 3 vagas -> Dev. Júnior, Dev. Pleno, Analista de PO
 * [Vindi] - 2 vagas -> Desenvolvedor C#, Tech Lead Full Stack
-*Nota: Todas as vagas são criadas com status ativo como default*
+* *Nota: Todas as vagas são criadas com status ativo como default*
 
 ### Candidatos
 * [Cleber] - **email:** cleber@gmail.com **password:** 222222
 * [Lucas] - **email:** lucas@gmail.com **password:** 333333
- 
+
 
 
