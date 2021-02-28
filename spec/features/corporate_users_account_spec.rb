@@ -63,5 +63,3 @@ feature 'corporate user management account' do
         expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário corporativo: 1 erro')
     end
 end
-
-# TODO - finalizar demais processos gerenciamento de usuários corporativos login, logout
