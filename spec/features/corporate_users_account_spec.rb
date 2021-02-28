@@ -62,4 +62,33 @@ feature 'corporate user management account' do
 
         expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário corporativo: 1 erro')
     end
+
+    scenario 'and can not register with empty required fields' do
+        visit new_user_registration_path
+
+        fill_in 'E-mail', with: 'cae@vindi.com'
+        fill_in 'Senha', with: ''
+        fill_in 'Confirme sua senha', with: '111111'
+
+        click_on 'Sign up'
+
+        expect(page.find("#error_explanation")).to have_content('Não foi possível salvar usuário corporativo: 2 erros')
+    end
+
+    scenario 'and can log in' do
+        vindi_company = Company.create!(name: 'Vindi Tecnologia', domain: 'vindi')
+        User.create!(email: 'cae@vindi.com', password: '111111',
+                     company: vindi_company)                                        
+        
+        visit root_path
+
+        click_on 'Corporativo'
+        fill_in 'E-mail', with: 'cae@vindi.com'
+        fill_in 'Senha', with: '111111'
+
+        click_on 'Log in'
+
+        expect(current_path).to eq(company_page_path)
+        expect(page.find("#navigation-menu")).to have_content('cae@vindi.com')
+    end
 end

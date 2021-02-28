@@ -50,13 +50,13 @@ feature 'candidate management account' do
     end
 
     scenario 'and can not register with existed e-mail' do
-        candidate = Candidate.create!(email: 'cae@rebase.com', password: '123456',
+        candidate = Candidate.create!(email: 'cae@gmail.com', password: '123456',
                                       full_name: 'Carlos Arduino',
                                       birth_date: '25/11/983')
         
         visit new_candidate_registration_path
 
-        fill_in 'E-mail', with: 'cae@rebase.com'
+        fill_in 'E-mail', with: 'cae@gmail.com'
         fill_in 'Senha', with: '111111'
         fill_in 'Confirme sua senha', with: '111111'
         fill_in 'Nome completo',  with: 'Caê Alves'
@@ -65,5 +65,36 @@ feature 'candidate management account' do
         click_on 'Sign up'
 
         expect(page.find("#error_explanation")).to have_content('Não foi possível salvar candidato: 1 erro')
+    end
+
+    scenario 'and can not register with empty required fields' do
+        visit new_candidate_registration_path
+
+        fill_in 'E-mail', with: 'cae@gmail.com'
+        fill_in 'Senha', with: ''
+        fill_in 'Confirme sua senha', with: '111111'
+        fill_in 'Nome completo',  with: 'Caê Alves'
+        fill_in 'Data de nascimento', with: '25/11/1999'
+
+        click_on 'Sign up'
+
+        expect(page.find("#error_explanation")).to have_content('Não foi possível salvar candidato: 2 erros')
+    end
+
+    scenario 'and can log in' do
+        candidate = Candidate.create!(email: 'cae@gmail.com', password: '123456',
+                                      full_name: 'Carlos Arduino',
+                                      birth_date: '25/11/983')
+        
+        visit root_path
+
+        click_on 'CANDIDATO'
+        fill_in 'E-mail', with: 'cae@gmail.com'
+        fill_in 'Senha', with: '123456'
+
+        click_on 'Log in'
+
+        expect(current_path).to eq(jobs_path)
+        expect(page.find("#navigation-menu")).to have_content('cae@gmail.com')
     end
 end

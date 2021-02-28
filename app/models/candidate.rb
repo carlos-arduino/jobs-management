@@ -4,4 +4,6 @@ class Candidate < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :full_name, :birth_date, presence: true
 end
