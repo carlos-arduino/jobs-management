@@ -1,4 +1,7 @@
 <h1>Painel da empresa <%= link_to "#{@company.name}", edit_company_path(@company) %> </h1><br>
+<% if @company.logo.attached? %>
+    <p><%= image_tag(@company.logo, size: '200x100') %></p>
+<% end %>
 <p>Domínio <%= "#{@company.domain}" %></p><br>
 <h3><%= link_to 'Cadastrar oferta de vagas', new_company_job_path(@company) %></h3>
 

@@ -4,6 +4,10 @@ rebase_company = Company.create!(name: 'Rebase Tecnologia',
                                  address: 'Rua Alameda Santos, 45',
                                  domain: 'rebase')
 
+rebase_company.logo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'logo_compass.png')), 
+                           filename: 'logo_compass.png')
+
+
 User.create!(email: 'paulo@rebase.com', password: '123456',
                             company: rebase_company)
 
@@ -28,6 +32,9 @@ Job.create!(title: 'Analista de PO',
 vindi_company = Company.create!(name: 'Vindi Serviços de Pagamentos', 
                                 address: 'Av. Paulista, 250',
                                 domain: 'vindi')
+                                
+vindi_company.logo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'logo_aviao.png')),
+                          filename: 'logo_aviao.png')
 
 User.create!(email: 'maria@vindi.com', password: '111111',
                             company: vindi_company)
