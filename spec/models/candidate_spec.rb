@@ -9,5 +9,9 @@ describe Candidate do
     it { should validate_presence_of(:full_name) }
 
     it { should validate_presence_of(:birth_date) }
+
+    it { should have_many(:enrollments) }
+
+    it { should have_many(:jobs) }
   end
 end

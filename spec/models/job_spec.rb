@@ -11,6 +11,17 @@ describe Job do
     it { should validate_presence_of(:limit_date) }
     
     it { should validate_presence_of(:quantity) }
+
+    it { should belong_to(:company) }
+
+    it { should have_many(:enrollments) }
+    
+    it { should have_many(:candidates) }
+
+    it do
+      should define_enum_for(:status).
+        with_values( active: 0, inactive: 5 )
+    end
   end
 
   context 'status ativo by default' do

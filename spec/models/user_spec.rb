@@ -7,6 +7,8 @@ describe User do
     
     it { should validate_presence_of(:password) }
 
+    it { should belong_to(:company) }
+
   end
   context '#extract domain' do
     it 'can separate domain given a email' do
