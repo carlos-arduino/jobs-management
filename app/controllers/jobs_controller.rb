@@ -3,7 +3,7 @@ class JobsController < ApplicationController
     before_action :authenticate_candidate!, only: [:enroll]
     
     def index
-        @jobs = Job.available_status_and_not_expired
+        @jobs = Job.active_and_not_expired
         @fill_select_company = Company.pluck(:name)
     end
 
@@ -52,7 +52,7 @@ class JobsController < ApplicationController
 
     def search
         jobs_founded = Company.find_by(name: params[:c])
-                              .jobs.available_status_and_not_expired
+                              .jobs.active_and_not_expired
         @filter_jobs = jobs_founded.where('title like ? OR description like ?',
                                           "%#{params[:q]}%", "%#{params[:q]}%")
     end
