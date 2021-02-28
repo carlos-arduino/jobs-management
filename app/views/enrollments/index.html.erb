@@ -1,6 +1,7 @@
 <h1><strong>Lista de vagas matriculadas</strong></h1>
 
 <% @enrollments.each do |enrollment| %>
+<div id=<%= "enrollment-#{enrollment.id}" %>>
     <p><strong>Status da candidatura: </strong><%= Enrollment.human_enum_name(:status, enrollment.status) %></p>
     <% if enrollment.declined? %>
         <p><strong>Razão do declinio: </strong><%= enrollment.reason %></p>  
@@ -16,6 +17,7 @@
     <% if enrollment.proposal %>
         <%= link_to 'Você tem uma proposta para esta vaga', proposal_path(enrollment.proposal) %>
     <% end %><hr>
+</div>
 <% end %>
 
 <%= link_to 'Voltar', jobs_path %>

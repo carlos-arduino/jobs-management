@@ -84,7 +84,7 @@ feature 'candidate management account' do
     scenario 'and can log in' do
         candidate = Candidate.create!(email: 'cae@gmail.com', password: '123456',
                                       full_name: 'Carlos Arduino',
-                                      birth_date: '25/11/983')
+                                      birth_date: '25/11/1983')
         
         visit root_path
 
