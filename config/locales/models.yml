@@ -30,6 +30,7 @@ pt-BR:
         status:
           active: "Ativo"
           inactive: "Inativo"
+          filled: "Candidatos preenchidos"
       enrollment:
         reason: "Justificativa"
         status:

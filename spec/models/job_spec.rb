@@ -20,7 +20,7 @@ describe Job do
 
     it do
       should define_enum_for(:status).
-        with_values( active: 0, inactive: 5 )
+        with_values( active: 0, inactive: 5, filled: 10 )
     end
   end
 

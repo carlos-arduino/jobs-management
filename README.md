@@ -22,7 +22,7 @@ e testes de acordo com a ordem natural dos requisitos do caderno, sendo elas:
 
 [X] Candidato acompanha suas candidaturas
 
-[ ] Vaga é desativada automaticamente
+[X] Vaga é desativada automaticamente
 
 
 ## Secundários

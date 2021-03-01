@@ -30,6 +30,7 @@ class ProposalsController < ApplicationController
             begin
                 @proposal.accepted!
                 @proposal.enrollment.accepted!
+                @proposal.enrollment.job.touch
                 redirect_to enrollments_path, notice: 'Proposta aceita'
             rescue ActiveRecord::RecordInvalid
                 render :show

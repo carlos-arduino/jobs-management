@@ -6,4 +6,5 @@ class Proposal < ApplicationRecord
   validates :reason, length: { minimum: 20 }, if: :candidate_declined?
 
   enum status: { pending: 0, accepted: 2, candidate_declined: 5 }
+
 end
