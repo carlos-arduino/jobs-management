@@ -46,12 +46,17 @@ final.
 * Devise - Gerenciamento de autenticação e autorização 
 * Rspec-rails e Capybara - Testes de integração
 * Rspec e Shoulda Matchers - Testes unitários
+* SimleCov - Testes de Cobertura
 
-## Instruções para rodar
+## Instruções para rodar a aplicação
 1. Clone o projeto
 2. Na raiz do projeto rode o comando *bin/setup*
 3. Execute o comando rails *db:migrate*
 4. Execute o comando rails *db:seed*
+
+## Instruções para rodar os testes
+1. Na raiz do projeto rode o comando *rspec*
+2. Execute o comando *open coverage/index.html* para visulizar % de cobertura
 
 ## Registros criados no banco contidos no arquivo seeds.rb
 
