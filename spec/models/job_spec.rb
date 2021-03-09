@@ -36,4 +36,26 @@ describe Job do
       expect(job.active?).to be_truthy
     end
   end
+
+  context 'auto change status by filled after touch' do
+    it 'if enrollments accepted equals job quantity' do
+      rebase_company = Company.create!(name: 'Rebase Tecnologia', 
+                                       address: 'Rua Alameda Santos, 45',
+                                       domain: 'rebase')
+      job = Job.create!(title: 'Dev. Junior', description: 'Desenvolvedor ruby on rails',
+                        income: '3000,00', level: 'Júnior', limit_date: '28/11/2021',
+                        quantity: 1, company: rebase_company)
+      candidate_cleber = Candidate.create!(email: 'cleber@gmail.com', 
+                                           password: '222222', 
+                                           full_name: 'Cleber Feltrin',
+                                           birth_date: '22/01/1983')
+      cleber_enrollment = Enrollment.create!(job: job, candidate: candidate_cleber,
+                                             status: 'accepted')
+
+      job.touch
+      job.reload
+
+      expect(job.filled?).to eq(true)
+    end
+  end
 end
